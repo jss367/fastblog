@@ -382,7 +382,11 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now as <code>get_image_files</code> grabs the filename of our <code>x</code> for us, we don't need to include our <code>get_x</code> here (which defaults to <code>None</code>) as we just want to use this filepath! Now onto our file paths and how they relate to our labels. We need to extract the particular class label from this filename path from some form of a Regular Expression. In our case, it would look something like so:</p>
+<p>Now as <code>get_image_files</code> grabs the filename of our <code>x</code> for us, we don't need to include our <code>get_x</code> here (which defaults to <code>None</code>) as we just want to use this filepath! Now onto our file paths and how they relate to our labels. If we look at our returned path, this particular image has the class of <strong>pug</strong>.</p>
+<p>Where do I see that?</p>
+<p><strong>Here</strong>:
+Path('/root/.fastai/data/oxford-iiit-pet/images/<strong>pug</strong>_119.jpg')</p>
+<p>All the images follow this same format, and we can use a Regular Expression to get it out. In our case, it would look something like so:</p>
 
 </div>
 </div>

@@ -476,6 +476,6 @@ table td { text-overflow: ellipsis; overflow: hidden; max-width: 15em; }
 
 .highlight .gd { color: #ff5555; }
 
-.input_area pre, .input_area div { font-size: 200%; }
+.input_area pre, .input_area div { font-size: 120%; }
 
 /*# sourceMappingURL=style.css.map */

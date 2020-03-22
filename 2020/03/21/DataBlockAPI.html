@@ -105,7 +105,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      9 min read
+      10 min read
     
 </span></p>
 
@@ -188,8 +188,8 @@ window.onload = wrap_img;
 <h2 id="What-is-the-DataBlock-API?">
 <a class="anchor" href="#What-is-the-DataBlock-API?" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the <code>DataBlock</code> API?<a class="anchor-link" href="#What-is-the-DataBlock-API?"> </a>
 </h2>
-<p>The <code>DataBlock</code> API is certainly nothing new to <code>fastai</code>. It was here in a lesser form in the previous version, and the start of an <em>idea</em>. This idea was: "How do I let the users of the <code>fastai</code> library build <code>DataLoaders</code> in a way that is simple enough someone with minimal coding knowledge could get the hang of it, but be advanced enough to allow for exploration. The old version was a struggle to do this from a high-level API standpoint, as you were very limited in what you could do: variables must be passed in a particular order, the error checking wasn't very explanitory (to those unaccustomed to debugging issues), and while the general idea seemed to flow, sometimes it didn't quite work well enough. For our first example, we'll look at the Pets dataset and compare it from <code>fastai</code> version 1 to <code>fastai</code> version 2</p>
-<p>The <code>DataBlock</code> itself is built on "building blocks", think of them as legos. They can go in any order but together they'll always build something. Our lego bricks go by these general names:</p>
+<p>The <code>DataBlock</code> API is certainly nothing new to <code>fastai</code>. It was here in a lesser form in the previous version, and the start of an <em>idea</em>. This idea was: "How do we let the users of the <code>fastai</code> library build <code>DataLoaders</code> in a way that is simple enough someone with minimal coding knowledge could get the hang of it, but be advanced enough to allow for exploration. The old version was a struggle to do this from a high-level API standpoint, as you were very limited in what you could do: variables must be passed in a particular order, the error checking wasn't very explanitory (to those unaccustomed to debugging issues), and while the general idea seemed to flow, sometimes it didn't quite work well enough. For our first example, we'll look at the Pets dataset and compare it from <code>fastai</code> version 1 to <code>fastai</code> version 2</p>
+<p>The <code>DataBlock</code> itself is built on "building blocks", think of them as legos. (For more information see <a href="https://arxiv.org/abs/2002.04688">fastai: A Layered API for Deep Learning</a>) They can go in any order but together they'll always build something. Our lego bricks go by these general names:</p>
 <ul>
 <li><code>blocks</code></li>
 <li><code>get_items</code></li>
@@ -341,7 +341,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The dataset itself is built where you have image names such as:</p>
+<p>To investigate how the files are named and where they are located, let's look at the first one:</p>
 
 </div>
 </div>
@@ -407,7 +407,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>How do we know it worked? Let's apply it to the first file path real quick with <code>re.search</code> where we pass in the pattern followed by an item to try and find a match in the first group:</p>
+<p>How do we know it worked? Let's apply it to the first file path real quick with <code>re.search</code> where we pass in the pattern followed by an item to try and find a match in the first group (set of matches) with a <a href="https://www.rexegg.com/">Regular Expression</a>:</p>
 
 </div>
 </div>
@@ -565,7 +565,9 @@ window.onload = wrap_img;
 <h3 id="The-Block">
 <a class="anchor" href="#The-Block" aria-hidden="true"><span class="octicon octicon-link"></span></a>The <code>Block</code><a class="anchor-link" href="#The-Block"> </a>
 </h3>
-<p><code>Block</code>'s are used to help nest transforms inside of pre-defined problem domains. Lazy-man's explaination? If it's an image problem I can tell the library to use <code>Pillow</code> without explicitly saying it, or if we have a Bounding Box problem I can tell the model to expect two coordinates for boxes and to apply the transforms for points, again without explicitly saying these transforms.</p>
+<p><code>Block</code>'s are used to help nest transforms inside of pre-defined problem domains.</p>
+<p>Lazy-man's explaination?</p>
+<p>If it's an image problem I can tell the library to use <code>Pillow</code> without explicitly saying it, or if we have a Bounding Box problem I can tell the model to expect two coordinates for boxes and to apply the transforms for points, again without explicitly saying these transforms.</p>
 <p>What will we use today? Well let's think about our problem: we are using an image for our <code>x</code>, and our labels (or <code>y</code>'s) are some category. Is there blocks for this? Yes! And they're labeled <code>ImageBlock</code> and <code>CategoryBlock</code>! Remember how I said it just "made more sense?" This is a direct example. Let's define them:</p>
 
 </div>

@@ -567,7 +567,7 @@ window.onload = wrap_img;
 </h3>
 <p><code>Block</code>'s are used to help nest transforms inside of pre-defined problem domains.</p>
 <p>Lazy-man's explaination?</p>
-<p>If it's an image problem I can tell the library to use <code>Pillow</code> without explicitly saying it, or if we have a Bounding Box problem I can tell the model to expect two coordinates for boxes and to apply the transforms for points, again without explicitly saying these transforms.</p>
+<p>If it's an image problem I can tell the library to use <code>Pillow</code> without explicitly saying it, or if we have a Bounding Box problem I can tell the DataBlock to expect two coordinates for boxes and to apply the transforms for points, again without explicitly saying these transforms.</p>
 <p>What will we use today? Well let's think about our problem: we are using an image for our <code>x</code>, and our labels (or <code>y</code>'s) are some category. Is there blocks for this? Yes! And they're labeled <code>ImageBlock</code> and <code>CategoryBlock</code>! Remember how I said it just "made more sense?" This is a direct example. Let's define them:</p>
 
 </div>

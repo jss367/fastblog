@@ -386,7 +386,7 @@ window.onload = wrap_img;
 <p>Where do I see that?</p>
 <p><strong>Here</strong>:
 Path('/root/.fastai/data/oxford-iiit-pet/images/<strong>pug</strong>_119.jpg')</p>
-<p>All the images follow this same format, and we can use a Regular Expression to get it out. In our case, it would look something like so:</p>
+<p>All the images follow this same format, and we can use a <a href="https://www.rexegg.com/">Regular Expression</a>: to get it out. In our case, it would look something like so:</p>
 
 </div>
 </div>
@@ -411,7 +411,7 @@ Path('/root/.fastai/data/oxford-iiit-pet/images/<strong>pug</strong>_119.jpg')</
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>How do we know it worked? Let's apply it to the first file path real quick with <code>re.search</code> where we pass in the pattern followed by an item to try and find a match in the first group (set of matches) with a <a href="https://www.rexegg.com/">Regular Expression</a>:</p>
+<p>How do we know it worked? Let's apply it to the first file path real quick with <code>re.search</code> where we pass in the pattern followed by an item to try and find a match in the first group (set of matches) with a Regular Expression</p>
 
 </div>
 </div>
@@ -463,7 +463,7 @@ Path('/root/.fastai/data/oxford-iiit-pet/images/<strong>pug</strong>_119.jpg')</
 <h3 id="Splitting-and-Augmentation">
 <a class="anchor" href="#Splitting-and-Augmentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Splitting and Augmentation<a class="anchor-link" href="#Splitting-and-Augmentation"> </a>
 </h3>
-<p>Any time we train a model, the data must be split between a training and validation dataset. The general idea is that the training dataset is what the model adjusts and fits its weights to, while the validation set is for us to understand how the model is performing. <code>fastai2</code> has a family of split functions to look at that will slowly get covered throughout these blogs. For today we'll randomly split our data so 80% go into our training set and 20% go into the validation. We can utilize <code>RandomSplitter</code> to do so. We pass in a percentage to split by, and optionally a seed as well to get the same validation split on multiple runs</p>
+<p>Any time we train a model, the data must be split between a training and validation dataset. The general idea is that the training dataset is what the model adjusts and fits its weights to, while the validation set is for us to understand how the model is performing. <code>fastai2</code> has a family of split functions to look at that will slowly get covered throughout these blogs. For today we'll randomly split our data so 80% goes into our training set and 20% goes into the validation. We can utilize <code>RandomSplitter</code> to do so by passing in a percentage to split by, and optionally a seed as well to get the same validation split on multiple runs</p>
 
 </div>
 </div>
@@ -531,7 +531,7 @@ Path('/root/.fastai/data/oxford-iiit-pet/images/<strong>pug</strong>_119.jpg')</
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>That doesn't look like filenames! Correct, instead its the <strong>location</strong> in our list of filenames and what group it belongs to. What this special looking list (or <code>L</code>) also tells us is how many <em>items</em> are in each list. In this example, the first (which is our training data) has 5,912 samples and the second (which is our validation) contains 1,478 samples.</p>
-<p>Now let's move onto the augmentation. As noted earlier, there are two kinds: <code>item_tfms</code> and <code>batch_tfms</code>. Each do as it sounds like. An item transform is applied on an individual item basis, and a batch transform is applied over each batch of data. The role of the item transform is to prepare everything for a batch level (and to apply any specific item transformations you need), and the batch transform is to further apply any augmentations on the batch level efficently (normalization of your data also happens on a batch level). One of the <strong>biggest</strong> differences between the two though is <em>where</em> each is done. Item transforms are done on the <strong>CPU</strong> while batch transforms are performed on the <strong>GPU</strong>.</p>
+<p>Now let's move onto the augmentation. As noted earlier, there are two kinds: <code>item_tfms</code> and <code>batch_tfms</code>. Each do what it sounds like: an item transform is applied on an individual item basis, and a batch transform is applied over each batch of data. The role of the item transform is to prepare everything for a batch level (and to apply any specific item transformations you need), and the batch transform is to further apply any augmentations on the batch level efficently (normalization of your data also happens on a batch level). One of the <strong>biggest</strong> differences between the two though is <em>where</em> each is done. Item transforms are done on the <strong>CPU</strong> while batch transforms are performed on the <strong>GPU</strong>.</p>
 <p>Now that we know this, let's build a basic transformation pipeline that looks something like so:</p>
 <ol>
 <li>Resize our images to a fixed size (224x224 pixels)</li>

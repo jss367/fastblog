@@ -757,7 +757,7 @@ Path('/root/.fastai/data/oxford-iiit-pet/images/<strong>pug</strong>_119.jpg')</
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now normally we would do <code>learn.lr_find()</code> and find a learning rate, but with the new library, we now have a <code>fine_tune()</code> function we can use instead specifically designed for transfer learning scenarios. It runs a specified number of epochs (the number of times we fully go through the dataset) on a frozen model (where all but the last layer's weights are not trainable) and then the last one will be on an unfrozen model (where all weights are trainable again). Let's try it!</p>
+<p>Now normally we would do <code>learn.lr_find()</code> and find a learning rate, but with the new library, we now have a <code>fine_tune()</code> function we can use instead specifically designed for transfer learning scenarios. It runs a specified number of epochs (the number of times we fully go through the dataset) on a frozen model (where all but the last layer's weights are not trainable) and then the last few will be on an unfrozen model (where all weights are trainable again). When just passing in one set of epochs, like below, it will run frozen for one and unfrozen for the rest. Let's try it!</p>
 
 </div>
 </div>

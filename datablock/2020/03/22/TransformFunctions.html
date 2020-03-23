@@ -831,6 +831,14 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>But what is <code>__getitem__</code>? It's a generic python function in classes that will look up objects via a <code>key</code>. In our case, our object is a dictionary and so we can pass in a key value to use (such as <code>n02105641</code>) and it will know to return back "Old English sheepdog" when called</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Looks readable enough now, right? So where do I put this into the API. We can stack these mini-transforms anywhere we'd like them applied. For instance here, we want it done on our <code>get_y</code>, but <em>after</em> <code>parent_label</code> has been applied. Let's do that:</p>
 
 </div>

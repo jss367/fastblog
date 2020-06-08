@@ -105,7 +105,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      8 min read
+      9 min read
     
 </span></p>
 
@@ -173,7 +173,7 @@ window.onload = wrap_img;
 <li>
 <code>fastcore</code>: 0.1.18</li>
 <li>
-<code>fastinference</code>: 0.0.3</li>
+<code>fastinference</code>: 0.0.4</li>
 </ul>
 <hr>
 
@@ -238,6 +238,21 @@ window.onload = wrap_img;
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -1163,6 +1178,21 @@ Wall time: 239 ms
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     
 
@@ -1241,10 +1271,10 @@ Wall time: 239 ms
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.389926</td>
-      <td>0.433506</td>
-      <td>0.818950</td>
-      <td>00:01</td>
+      <td>0.380894</td>
+      <td>0.452286</td>
+      <td>0.820639</td>
+      <td>00:00</td>
     </tr>
   </tbody>
 </table>
@@ -1623,7 +1653,7 @@ Wall time: 239 ms
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>All we need to do is call <code>learn.to_onnx</code> and pass in a <code>fname</code> to export to the <code>ONNX</code> format:</p>
+<p>All we need to do is call <code>learn.to_onnx</code> and pass in a <code>fname</code> to export to <strong>both</strong> the ONNX format and export our model. We'll see why in a moment:</p>
 
 </div>
 </div>
@@ -1635,7 +1665,7 @@ Wall time: 239 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">to_onnx</span><span class="p">(</span><span class="s1">'tabular.onnx'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">to_onnx</span><span class="p">(</span><span class="s1">'tabular'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1661,7 +1691,7 @@ Wall time: 239 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tab_inf</span> <span class="o">=</span> <span class="n">fastONNX</span><span class="p">(</span><span class="s1">'tabular.onnx'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tab_inf</span> <span class="o">=</span> <span class="n">fastONNX</span><span class="p">(</span><span class="s1">'tabular'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1700,8 +1730,8 @@ Wall time: 239 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 55.2 ms, sys: 3.4 ms, total: 58.6 ms
-Wall time: 55.9 ms
+<pre>CPU times: user 37.9 ms, sys: 2.61 ms, total: 40.5 ms
+Wall time: 39 ms
 </pre>
 </div>
 </div>
@@ -1727,7 +1757,7 @@ Wall time: 55.9 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_dl</span><span class="o">.</span><span class="n">bs</span><span class="o">=</span><span class="mi">1</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_dl</span><span class="o">.</span><span class="n">bs</span> <span class="o">=</span> <span class="mi">1</span>
 </pre></div>
 
     </div>
@@ -1777,7 +1807,7 @@ Wall time: 55.9 ms
 
 <div class="output_text output_subarea output_execute_result">
 <pre>(tensor([[5, 8, 3, 0, 6, 5, 1]], device='cuda:0'),
- tensor([[ 0.7655, -0.8357,  0.7547]], device='cuda:0'),
+ tensor([[ 0.7635, -0.8441,  0.7524]], device='cuda:0'),
  tensor([[1]], device='cuda:0', dtype=torch.int8))</pre>
 </div>
 
@@ -1805,7 +1835,7 @@ Wall time: 55.9 ms
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>it
-<span class="n">_</span> <span class="o">=</span> <span class="n">tab_inf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="o">*</span><span class="n">batch</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">tab_inf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">batch</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -1818,7 +1848,8 @@ Wall time: 55.9 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>1000 loops, best of 3: 375 µs per loop
+<pre>The slowest run took 31.68 times longer than the fastest. This could mean that an intermediate result is being cached.
+1000 loops, best of 3: 241 µs per loop
 </pre>
 </div>
 </div>
@@ -1832,12 +1863,153 @@ Wall time: 55.9 ms
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As you can see, <em>lighting</em> fast! And that's all that's needed! Eventually I may convert this into a more <code>fastai</code>-like scenario, but for now this is the framework as it lays.</p>
+<p>As you can see, <em>lighting</em> fast! And that's all that's needed! <s>Eventually I may convert this into a more `fastai`-like scenario, but for now this is the framework as it lays. </s></p>
+<p>I also couldn't leave enough as enough. You have the full inference capability inside of this module. Let's build a <code>test_dl</code> again and run <code>get_preds</code> as an example:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dl</span> <span class="o">=</span> <span class="n">tab_inf</span><span class="o">.</span><span class="n">test_dl</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">100</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">preds</span> <span class="o">=</span> <span class="n">tab_inf</span><span class="o">.</span><span class="n">get_preds</span><span class="p">(</span><span class="n">dl</span><span class="o">=</span><span class="n">dl</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 8.34 ms, sys: 0 ns, total: 8.34 ms
+Wall time: 9.71 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Just to compare with our original:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dl</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="s1">'cuda'</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">preds</span> <span class="o">=</span> <span class="n">learn</span><span class="o">.</span><span class="n">get_preds</span><span class="p">(</span><span class="n">dl</span><span class="o">=</span><span class="n">dl</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 10.6 ms, sys: 0 ns, total: 10.6 ms
+Wall time: 11.7 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We shaved off a few milliseconds too!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>In the next article I'll be showing how to utilize <code>SHAP</code>, and then the last will include <code>ClassConfusion</code>. Thanks for reading!</p>
 
 </div>
 </div>
 </div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">In</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">article</span> <span class="n">I</span><span class="s1">'ll be showing how to utilize `SHAP`, and then the last will include `ClassConfusion`. Thanks for reading!</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
 </div>
 
 

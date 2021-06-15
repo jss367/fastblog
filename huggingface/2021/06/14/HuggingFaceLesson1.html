@@ -7,15 +7,16 @@
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="HuggingFace Course Notes, Chapter 1 (And Zero), Part 1" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This notebook covers all of Chapter 0, and Chapter 1 up to “How do Transformers Work?”" />
-<meta property="og:description" content="This notebook covers all of Chapter 0, and Chapter 1 up to “How do Transformers Work?”" />
-<link rel="canonical" href="https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html" />
-<meta property="og:url" content="https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html" />
+<meta name="description" content="This notebook covers all of Chapter 0, and Chapter 1 up to ‘How do Transformers Work?’" />
+<meta property="og:description" content="This notebook covers all of Chapter 0, and Chapter 1 up to ‘How do Transformers Work?’" />
+<link rel="canonical" href="https://muellerzr.github.io/fastblog/huggingface/2021/06/14/HuggingFaceLesson1.html" />
+<meta property="og:url" content="https://muellerzr.github.io/fastblog/huggingface/2021/06/14/HuggingFaceLesson1.html" />
 <meta property="og:site_name" content="fastblog" />
+<meta property="og:image" content="https://muellerzr.github.io/fastblog/images/hugging-face.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-06-14T00:00:00-05:00" />
 <script type="application/ld+json">
-{"datePublished":"2021-06-14T00:00:00-05:00","dateModified":"2021-06-14T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html"},"description":"This notebook covers all of Chapter 0, and Chapter 1 up to “How do Transformers Work?”","@type":"BlogPosting","url":"https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html","headline":"HuggingFace Course Notes, Chapter 1 (And Zero), Part 1","@context":"https://schema.org"}</script>
+{"datePublished":"2021-06-14T00:00:00-05:00","dateModified":"2021-06-14T00:00:00-05:00","image":"https://muellerzr.github.io/fastblog/images/hugging-face.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://muellerzr.github.io/fastblog/huggingface/2021/06/14/HuggingFaceLesson1.html"},"description":"This notebook covers all of Chapter 0, and Chapter 1 up to ‘How do Transformers Work?’","@type":"BlogPosting","url":"https://muellerzr.github.io/fastblog/huggingface/2021/06/14/HuggingFaceLesson1.html","headline":"HuggingFace Course Notes, Chapter 1 (And Zero), Part 1","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/fastblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://muellerzr.github.io/fastblog/feed.xml" title="fastblog" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -28,15 +29,16 @@
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="HuggingFace Course Notes, Chapter 1 (And Zero), Part 1" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This notebook covers all of Chapter 0, and Chapter 1 up to “How do Transformers Work?”" />
-<meta property="og:description" content="This notebook covers all of Chapter 0, and Chapter 1 up to “How do Transformers Work?”" />
-<link rel="canonical" href="https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html" />
-<meta property="og:url" content="https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html" />
+<meta name="description" content="This notebook covers all of Chapter 0, and Chapter 1 up to ‘How do Transformers Work?’" />
+<meta property="og:description" content="This notebook covers all of Chapter 0, and Chapter 1 up to ‘How do Transformers Work?’" />
+<link rel="canonical" href="https://muellerzr.github.io/fastblog/huggingface/2021/06/14/HuggingFaceLesson1.html" />
+<meta property="og:url" content="https://muellerzr.github.io/fastblog/huggingface/2021/06/14/HuggingFaceLesson1.html" />
 <meta property="og:site_name" content="fastblog" />
+<meta property="og:image" content="https://muellerzr.github.io/fastblog/images/hugging-face.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-06-14T00:00:00-05:00" />
 <script type="application/ld+json">
-{"datePublished":"2021-06-14T00:00:00-05:00","dateModified":"2021-06-14T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html"},"description":"This notebook covers all of Chapter 0, and Chapter 1 up to “How do Transformers Work?”","@type":"BlogPosting","url":"https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html","headline":"HuggingFace Course Notes, Chapter 1 (And Zero), Part 1","@context":"https://schema.org"}</script>
+{"datePublished":"2021-06-14T00:00:00-05:00","dateModified":"2021-06-14T00:00:00-05:00","image":"https://muellerzr.github.io/fastblog/images/hugging-face.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://muellerzr.github.io/fastblog/huggingface/2021/06/14/HuggingFaceLesson1.html"},"description":"This notebook covers all of Chapter 0, and Chapter 1 up to ‘How do Transformers Work?’","@type":"BlogPosting","url":"https://muellerzr.github.io/fastblog/huggingface/2021/06/14/HuggingFaceLesson1.html","headline":"HuggingFace Course Notes, Chapter 1 (And Zero), Part 1","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -97,7 +99,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">HuggingFace Course Notes, Chapter 1 (And Zero), Part 1</h1><p class="page-description">This notebook covers all of Chapter 0, and Chapter 1 up to &quot;How do Transformers Work?&quot;</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-06-14T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">HuggingFace Course Notes, Chapter 1 (And Zero), Part 1</h1><p class="page-description">This notebook covers all of Chapter 0, and Chapter 1 up to &#39;How do Transformers Work?&#39;</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-06-14T00:00:00-05:00" itemprop="datePublished">
         Jun 14, 2021
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -107,6 +109,13 @@ window.onload = wrap_img;
     
 </span></p>
 
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/fastblog/categories/#HuggingFace">HuggingFace</a>
+        
+      
+      </p>
     
 
     
@@ -134,7 +143,25 @@ window.onload = wrap_img;
       </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <!--
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Chapter-0-(Setup):">Chapter 0 (Setup): </a></li>
+<li class="toc-entry toc-h2"><a href="#Chapter-1">Chapter 1 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Introduction">Introduction </a></li>
+<li class="toc-entry toc-h3"><a href="#Natural-Language-Processing">Natural Language Processing </a></li>
+<li class="toc-entry toc-h3"><a href="#Transformers,-what-can-they-do?">Transformers, what can they do? </a></li>
+<li class="toc-entry toc-h3"><a href="#Working-with-Pipelines,-with-Sylvain">Working with Pipelines, with Sylvain </a></li>
+<li class="toc-entry toc-h3"><a href="#Zero-Shot-Classification">Zero-Shot Classification </a></li>
+<li class="toc-entry toc-h3"><a href="#Text-Generation">Text Generation </a></li>
+<li class="toc-entry toc-h3"><a href="#Use-any-model-from-the-Hub-in-a-pipeline">Use any model from the Hub in a pipeline </a></li>
+<li class="toc-entry toc-h3"><a href="#Mask-Filling">Mask Filling </a></li>
+<li class="toc-entry toc-h3"><a href="#Named-Entity-Recognition-(NER)">Named Entity Recognition (NER) </a></li>
+<li class="toc-entry toc-h3"><a href="#Question-Answering-(QA)">Question Answering (QA) </a></li>
+<li class="toc-entry toc-h3"><a href="#Summarization">Summarization </a></li>
+<li class="toc-entry toc-h3"><a href="#Translation">Translation </a></li>
+</ul>
+</li>
+</ul><!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
@@ -150,26 +177,17 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>toc: true</li>
-<li>badges: true</li>
-<li>comments: true</li>
-<li>image: images/hugging-face.png</li>
-<li>category: HuggingFace</li>
-</ul>
-
+<h2 id="Chapter-0-(Setup):">
+<a class="anchor" href="#Chapter-0-(Setup):" aria-hidden="true"><span class="octicon octicon-link"></span></a>Chapter 0 (Setup):<a class="anchor-link" href="#Chapter-0-(Setup):"> </a>
+</h2>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Chapter-0-(Setup):">Chapter 0 (Setup):<a class="anchor-link" href="#Chapter-0-(Setup):"> </a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Since HF in of itself has no dependancy requirements, they recommend us installing <code>transformers[dev]</code> so it gets all the dev requirements for "any imaginable use case".</p>
 <p>A full list of what it installs is below:</p>
@@ -241,10 +259,11 @@ window.onload = wrap_img;
     "unidic_lite": "unidic_lite&gt;=1.0.7",
     "uvicorn": "uvicorn",
 }</code></pre>
-<p><div class="flash">
-    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
     <strong>Note: </strong>after exploring a bit I found their requirements are located <a href="https://github.com/huggingface/transformers/blob/master/src/transformers/dependency_versions_table.py">here</a>
-</div></p>
+</div>
 
 </div>
 </div>
@@ -269,10 +288,10 @@ window.onload = wrap_img;
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-red-fg">ERROR: datascience 0.10.6 has requirement folium==0.2.1, but you&#39;ll have folium 0.8.3 which is incompatible.</span>
-<span class="ansi-red-fg">ERROR: pytest-forked 1.3.0 has requirement pytest&gt;=3.10, but you&#39;ll have pytest 3.6.4 which is incompatible.</span>
-<span class="ansi-red-fg">ERROR: pytest-xdist 2.2.1 has requirement pytest&gt;=6.0.0, but you&#39;ll have pytest 3.6.4 which is incompatible.</span>
-<span class="ansi-red-fg">ERROR: black 21.4b0 has requirement regex&gt;=2020.1.8, but you&#39;ll have regex 2019.12.20 which is incompatible.</span>
+<pre><span class="ansi-red-fg">ERROR: datascience 0.10.6 has requirement folium==0.2.1, but you'll have folium 0.8.3 which is incompatible.</span>
+<span class="ansi-red-fg">ERROR: pytest-forked 1.3.0 has requirement pytest&gt;=3.10, but you'll have pytest 3.6.4 which is incompatible.</span>
+<span class="ansi-red-fg">ERROR: pytest-xdist 2.2.1 has requirement pytest&gt;=6.0.0, but you'll have pytest 3.6.4 which is incompatible.</span>
+<span class="ansi-red-fg">ERROR: black 21.4b0 has requirement regex&gt;=2020.1.8, but you'll have regex 2019.12.20 which is incompatible.</span>
 </pre>
 </div>
 </div>
@@ -283,7 +302,8 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This should take a bit to run. I noticed four incompatibility errors in Colab, we'll see if it has any issues.</p>
 
@@ -330,22 +350,30 @@ Required-by:
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Alright! We can move onto Chapter 1! 🤗</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Chapter-1">Chapter 1<a class="anchor-link" href="#Chapter-1"> </a></h2>
+<h2 id="Chapter-1">
+<a class="anchor" href="#Chapter-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Chapter 1<a class="anchor-link" href="#Chapter-1"> </a>
+</h2>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction"> </a></h3><p>Looks as though it's split into three main chunks:</p>
+<h3 id="Introduction">
+<a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
+</h3>
+<p>Looks as though it's split into three main chunks:</p>
 <ul>
 <li>Introduction</li>
 <li>Diving in</li>
@@ -354,11 +382,12 @@ Required-by:
 <p>Introduction will show a very surface level with Transformers models and HF Transformers, fine-tuning a basic model, and sharing models and tokenizers.</p>
 <p>Diving in will go further into the HF datasets and tokenizers library, basic NLP tasks, and how to ask for help (presumably on the forums or on Twitter?)</p>
 <p>Advanced looks to be covering specialized architecture, speeding up training, custom training loops (yay!) and contributing to HF itself.
+</p>
 <div class="flash">
-    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
     <strong>Note: </strong>This is better taken after an intro course such as Practical Deep Learning for Coders or any course developed by deeplearning.ai.
 </div>
-It also mentions that they don't expect any prior PyTorch or Tensorflow knowledge, but some familiarity will help. (fastai likely helps here too some)</p>
+It also mentions that they don't expect any prior PyTorch or Tensorflow knowledge, but some familiarity will help. (fastai likely helps here too some)
 <p>The wonderful authors:</p>
 <ul>
 <li>Matthew Carrigan - MLE @ HF</li>
@@ -375,9 +404,13 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Natural-Language-Processing">Natural Language Processing<a class="anchor-link" href="#Natural-Language-Processing"> </a></h3><ul>
+<h3 id="Natural-Language-Processing">
+<a class="anchor" href="#Natural-Language-Processing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Natural Language Processing<a class="anchor-link" href="#Natural-Language-Processing"> </a>
+</h3>
+<ul>
 <li>What is it?</li>
 </ul>
 <p>Classifying whole sentences or each word in a sentence, generating text content, question answering, and generating a new sentence from an input text</p>
@@ -389,29 +422,40 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Transformers,-what-can-they-do?">Transformers, what can they do?<a class="anchor-link" href="#Transformers,-what-can-they-do?"> </a></h3><p>We get to look at <code>pipeline</code> now!</p>
+<h3 id="Transformers,-what-can-they-do?">
+<a class="anchor" href="#Transformers,-what-can-they-do?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transformers, what can they do?<a class="anchor-link" href="#Transformers,-what-can-they-do?"> </a>
+</h3>
+<p>We get to look at <code>pipeline</code> now!</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The <a href="https://huggingface.co/models">Model Hub</a> is a super valuable resource because it contains thousands of pretrained models for you to use, and you can upload your own. <em>The</em> language model zoo.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Working-with-Pipelines,-with-Sylvain"><a href="https://youtu.be/tiZFewofSLM">Working with Pipelines, with Sylvain</a><a class="anchor-link" href="#Working-with-Pipelines,-with-Sylvain"> </a></h3><blockquote><p>Offhand note, I like that the videos are broken up into ~4-5 minute chunks</p>
+<h3 id="Working-with-Pipelines,-with-Sylvain">
+<a class="anchor" href="#Working-with-Pipelines,-with-Sylvain" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://youtu.be/tiZFewofSLM">Working with Pipelines, with Sylvain</a><a class="anchor-link" href="#Working-with-Pipelines,-with-Sylvain"> </a>
+</h3>
+<blockquote>
+<p>Offhand note, I like that the videos are broken up into ~4-5 minute chunks</p>
 </blockquote>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>General approach to how I will take these notes:</p>
 <ol>
@@ -423,7 +467,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The <code>pipeline</code> is a very quick and powerful way to grab inference with any HF model.</p>
 <p>Let's break down one example below they showed:</p>
@@ -440,8 +485,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
 
-<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">)</span>
-<span class="n">classifier</span><span class="p">(</span><span class="s2">&quot;I&#39;ve been waiting for a HuggingFace course all my life!&quot;</span><span class="p">)</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">"sentiment-analysis"</span><span class="p">)</span>
+<span class="n">classifier</span><span class="p">(</span><span class="s2">"I've been waiting for a HuggingFace course all my life!"</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -467,7 +512,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;label&#39;: &#39;POSITIVE&#39;, &#39;score&#39;: 0.9943008422851562}]</pre>
+<pre>[{'label': 'POSITIVE', 'score': 0.9943008422851562}]</pre>
 </div>
 
 </div>
@@ -478,7 +523,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>What did this do here?</p>
 <ol>
@@ -491,7 +537,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can also pass in multiple inputs/texts:</p>
 
@@ -506,8 +553,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">classifier</span><span class="p">([</span>
-    <span class="s2">&quot;I&#39;ve been waiting for a HuggingFace course my whole life.&quot;</span><span class="p">,</span> 
-    <span class="s2">&quot;I hate this so much!&quot;</span>
+    <span class="s2">"I've been waiting for a HuggingFace course my whole life."</span><span class="p">,</span> 
+    <span class="s2">"I hate this so much!"</span>
 <span class="p">])</span>
 </pre></div>
 
@@ -523,8 +570,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;label&#39;: &#39;POSITIVE&#39;, &#39;score&#39;: 0.9598048329353333},
- {&#39;label&#39;: &#39;NEGATIVE&#39;, &#39;score&#39;: 0.9994558095932007}]</pre>
+<pre>[{'label': 'POSITIVE', 'score': 0.9598048329353333},
+ {'label': 'NEGATIVE', 'score': 0.9994558095932007}]</pre>
 </div>
 
 </div>
@@ -535,7 +582,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The default model for this task is a pretrained model fine-uned for sentient analysis in english. Let's see if I can't find it</p>
 
@@ -564,54 +612,54 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;__abstractmethods__&#39;,
- &#39;__call__&#39;,
- &#39;__class__&#39;,
- &#39;__delattr__&#39;,
- &#39;__dict__&#39;,
- &#39;__dir__&#39;,
- &#39;__doc__&#39;,
- &#39;__eq__&#39;,
- &#39;__format__&#39;,
- &#39;__ge__&#39;,
- &#39;__getattribute__&#39;,
- &#39;__gt__&#39;,
- &#39;__hash__&#39;,
- &#39;__init__&#39;,
- &#39;__init_subclass__&#39;,
- &#39;__le__&#39;,
- &#39;__lt__&#39;,
- &#39;__module__&#39;,
- &#39;__ne__&#39;,
- &#39;__new__&#39;,
- &#39;__reduce__&#39;,
- &#39;__reduce_ex__&#39;,
- &#39;__repr__&#39;,
- &#39;__setattr__&#39;,
- &#39;__sizeof__&#39;,
- &#39;__slots__&#39;,
- &#39;__str__&#39;,
- &#39;__subclasshook__&#39;,
- &#39;__weakref__&#39;,
- &#39;_abc_impl&#39;,
- &#39;_forward&#39;,
- &#39;_parse_and_tokenize&#39;,
- &#39;binary_output&#39;,
- &#39;check_model_type&#39;,
- &#39;default_input_names&#39;,
- &#39;device&#39;,
- &#39;device_placement&#39;,
- &#39;ensure_tensor_on_device&#39;,
- &#39;feature_extractor&#39;,
- &#39;framework&#39;,
- &#39;model&#39;,
- &#39;modelcard&#39;,
- &#39;predict&#39;,
- &#39;return_all_scores&#39;,
- &#39;save_pretrained&#39;,
- &#39;task&#39;,
- &#39;tokenizer&#39;,
- &#39;transform&#39;]</pre>
+<pre>['__abstractmethods__',
+ '__call__',
+ '__class__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__slots__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__',
+ '_abc_impl',
+ '_forward',
+ '_parse_and_tokenize',
+ 'binary_output',
+ 'check_model_type',
+ 'default_input_names',
+ 'device',
+ 'device_placement',
+ 'ensure_tensor_on_device',
+ 'feature_extractor',
+ 'framework',
+ 'model',
+ 'modelcard',
+ 'predict',
+ 'return_all_scores',
+ 'save_pretrained',
+ 'task',
+ 'tokenizer',
+ 'transform']</pre>
 </div>
 
 </div>
@@ -644,7 +692,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;pt&#39;</pre>
+<pre>'pt'</pre>
 </div>
 
 </div>
@@ -688,20 +736,24 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So it's a <code>DistilBertForSequenceClassification</code>, likely using the default which would be <code>en-sentiment</code></p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Current available pipeline classes:</p>
 <ul>
-<li><code>feature-extraction</code> (vector representation of a text)</li>
+<li>
+<code>feature-extraction</code> (vector representation of a text)</li>
 <li><code>fill-mask</code></li>
-<li><code>ner</code> (Named-Entity-Recognition)</li>
+<li>
+<code>ner</code> (Named-Entity-Recognition)</li>
 <li><code>question-answering</code></li>
 <li><code>sentiment-analysis</code></li>
 <li><code>text-generation</code></li>
@@ -712,9 +764,13 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Zero-Shot-Classification">Zero-Shot Classification<a class="anchor-link" href="#Zero-Shot-Classification"> </a></h3><ul>
+<h3 id="Zero-Shot-Classification">
+<a class="anchor" href="#Zero-Shot-Classification" aria-hidden="true"><span class="octicon octicon-link"></span></a>Zero-Shot Classification<a class="anchor-link" href="#Zero-Shot-Classification"> </a>
+</h3>
+<ul>
 <li>Classifying unlabelled tasks. </li>
 </ul>
 <p><code>zero-shot-classification</code> pipeline let's us specify which labels to use for classification, even if they may differ from the pretrained models.</p>
@@ -722,9 +778,11 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p>Side Note:I'm going to write a quick namespace class via <code>mk_class</code> in fastcore to hold all of these tasks, so I can get tab-completion</p>
+<blockquote>
+<p>Side Note:I'm going to write a quick namespace class via <code>mk_class</code> in fastcore to hold all of these tasks, so I can get tab-completion</p>
 </blockquote>
 
 </div>
@@ -771,18 +829,18 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cls_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;FeatureExtraction&#39;</span><span class="p">:</span><span class="s1">&#39;feature-extraction&#39;</span><span class="p">,</span>
- <span class="s1">&#39;FillMask&#39;</span><span class="p">:</span><span class="s1">&#39;fill-mask&#39;</span><span class="p">,</span>
- <span class="s1">&#39;NER&#39;</span><span class="p">:</span><span class="s1">&#39;ner&#39;</span><span class="p">,</span>
- <span class="s1">&#39;QuestionAnswering&#39;</span><span class="p">:</span><span class="s1">&#39;question-answering&#39;</span><span class="p">,</span>
- <span class="s1">&#39;SentimentAnalysis&#39;</span><span class="p">:</span><span class="s1">&#39;sentiment-analysis&#39;</span><span class="p">,</span>
- <span class="s1">&#39;Summarization&#39;</span><span class="p">:</span><span class="s1">&#39;summarization&#39;</span><span class="p">,</span>
- <span class="s1">&#39;TextGeneration&#39;</span><span class="p">:</span><span class="s1">&#39;text-generation&#39;</span><span class="p">,</span>
- <span class="s1">&#39;Translation&#39;</span><span class="p">:</span><span class="s1">&#39;translation&#39;</span><span class="p">,</span>
- <span class="s1">&#39;ZeroShotClassification&#39;</span><span class="p">:</span><span class="s1">&#39;zero-shot-classification&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cls_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'FeatureExtraction'</span><span class="p">:</span><span class="s1">'feature-extraction'</span><span class="p">,</span>
+ <span class="s1">'FillMask'</span><span class="p">:</span><span class="s1">'fill-mask'</span><span class="p">,</span>
+ <span class="s1">'NER'</span><span class="p">:</span><span class="s1">'ner'</span><span class="p">,</span>
+ <span class="s1">'QuestionAnswering'</span><span class="p">:</span><span class="s1">'question-answering'</span><span class="p">,</span>
+ <span class="s1">'SentimentAnalysis'</span><span class="p">:</span><span class="s1">'sentiment-analysis'</span><span class="p">,</span>
+ <span class="s1">'Summarization'</span><span class="p">:</span><span class="s1">'summarization'</span><span class="p">,</span>
+ <span class="s1">'TextGeneration'</span><span class="p">:</span><span class="s1">'text-generation'</span><span class="p">,</span>
+ <span class="s1">'Translation'</span><span class="p">:</span><span class="s1">'translation'</span><span class="p">,</span>
+ <span class="s1">'ZeroShotClassification'</span><span class="p">:</span><span class="s1">'zero-shot-classification'</span>
  <span class="p">}</span>
 
-<span class="n">mk_class</span><span class="p">(</span><span class="s1">&#39;Task&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">cls_dict</span><span class="p">)</span>
+<span class="n">mk_class</span><span class="p">(</span><span class="s1">'Task'</span><span class="p">,</span> <span class="o">**</span><span class="n">cls_dict</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -814,7 +872,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;feature-extraction&#39;</pre>
+<pre>'feature-extraction'</pre>
 </div>
 
 </div>
@@ -825,14 +883,16 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As you can see all I've done is load a fancy namespace-like object from <code>fastcore</code> that holds my dictionary values as attributes instead.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Back to the HF stuff. Let's load in a pipeline:</p>
 
@@ -856,7 +916,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Seems this model took quite a bit longer to download, but our <code>Task</code> object is working great!</p>
 
@@ -871,8 +932,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">classifier</span><span class="p">(</span>
-    <span class="s2">&quot;This is a course about the Transformers library&quot;</span><span class="p">,</span>
-    <span class="n">candidate_labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;education&#39;</span><span class="p">,</span><span class="s1">&#39;politics&#39;</span><span class="p">,</span><span class="s1">&#39;business&#39;</span><span class="p">]</span>
+    <span class="s2">"This is a course about the Transformers library"</span><span class="p">,</span>
+    <span class="n">candidate_labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'education'</span><span class="p">,</span><span class="s1">'politics'</span><span class="p">,</span><span class="s1">'business'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -888,9 +949,9 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;labels&#39;: [&#39;education&#39;, &#39;business&#39;, &#39;politics&#39;],
- &#39;scores&#39;: [0.844597339630127, 0.11197540909051895, 0.043427303433418274],
- &#39;sequence&#39;: &#39;This is a course about the Transformers library&#39;}</pre>
+<pre>{'labels': ['education', 'business', 'politics'],
+ 'scores': [0.844597339630127, 0.11197540909051895, 0.043427303433418274],
+ 'sequence': 'This is a course about the Transformers library'}</pre>
 </div>
 
 </div>
@@ -901,16 +962,21 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Very interesting, so we can see right away it could tell this was educational! (Or fit the closest to that label.) I wonder how it works under the hood, something I may peruse later.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Text-Generation">Text Generation<a class="anchor-link" href="#Text-Generation"> </a></h3><p>Generate some fancy text given a prompt.</p>
+<h3 id="Text-Generation">
+<a class="anchor" href="#Text-Generation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Text Generation<a class="anchor-link" href="#Text-Generation"> </a>
+</h3>
+<p>Generate some fancy text given a prompt.</p>
 <p>Similar to predictive text feature on my iPhone.</p>
 <p>Has some randomness, so we won't 100% get the smae thing each time</p>
 
@@ -959,7 +1025,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">generator</span><span class="p">(</span><span class="s2">&quot;In this course we will teach you how to&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">generator</span><span class="p">(</span><span class="s2">"In this course we will teach you how to"</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -982,7 +1048,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;generated_text&#39;: &#39;In this course we will teach you how to create a custom project with custom options.\n\nBefore you begin, you will also want to check how to setup the build system. It is available in all versions, at all times we recommend using the&#39;}]</pre>
+<pre>[{'generated_text': 'In this course we will teach you how to create a custom project with custom options.\n\nBefore you begin, you will also want to check how to setup the build system. It is available in all versions, at all times we recommend using the'}]</pre>
 </div>
 
 </div>
@@ -993,7 +1059,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Theres a few args we can control and pass to it, such as <code>num_return_sequences</code> and <code>max_length</code>.</p>
 <p>The homework is to try and generate two sentences of 15 words each. Let's try that:</p>
@@ -1009,7 +1076,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">generator</span><span class="p">(</span>
-    <span class="s2">&quot;In Marine Biology,&quot;</span><span class="p">,</span>
+    <span class="s2">"In Marine Biology,"</span><span class="p">,</span>
     <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">max_length</span><span class="o">=</span><span class="mi">15</span>
 <span class="p">)</span>
@@ -1035,8 +1102,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;generated_text&#39;: &#39;In Marine Biology, the study was published in Physical Review Letters.\n\n&#39;},
- {&#39;generated_text&#39;: &#34;In Marine Biology, a graduate of California&#39;s Stanford University, said the discovery&#34;}]</pre>
+<pre>[{'generated_text': 'In Marine Biology, the study was published in Physical Review Letters.\n\n'},
+ {'generated_text': "In Marine Biology, a graduate of California's Stanford University, said the discovery"}]</pre>
 </div>
 
 </div>
@@ -1047,7 +1114,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Cool! Easy to use</p>
 <p>A headache I ran into is it's <code>num_return_sequences</code>, <strong>not</strong> <code>num_returned_sequences</code>.</p>
@@ -1055,14 +1123,19 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Use-any-model-from-the-Hub-in-a-pipeline">Use any model from the Hub in a pipeline<a class="anchor-link" href="#Use-any-model-from-the-Hub-in-a-pipeline"> </a></h3><p>I <strong>love</strong> the HuggingFace hub, so very happy to see this in here</p>
+<h3 id="Use-any-model-from-the-Hub-in-a-pipeline">
+<a class="anchor" href="#Use-any-model-from-the-Hub-in-a-pipeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use any model from the Hub in a pipeline<a class="anchor-link" href="#Use-any-model-from-the-Hub-in-a-pipeline"> </a>
+</h3>
+<p>I <strong>love</strong> the HuggingFace hub, so very happy to see this in here</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Models can be found on the <a href="https://huggingface.co/models">ModelHub</a>. In this example we use distilgpt2</p>
 
@@ -1076,10 +1149,10 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">TextGeneration</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;distilgpt2&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">TextGeneration</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">'distilgpt2'</span><span class="p">)</span>
 
 <span class="n">generator</span><span class="p">(</span>
-    <span class="s2">&quot;In this course, we will teach you how to&quot;</span><span class="p">,</span>
+    <span class="s2">"In this course, we will teach you how to"</span><span class="p">,</span>
     <span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
     <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">2</span>
 <span class="p">)</span>
@@ -1117,8 +1190,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;generated_text&#39;: &#39;In this course, we will teach you how to integrate a Python function into your application and use a Python object. In addition, we will be teaching&#39;},
- {&#39;generated_text&#39;: &#39;In this course, we will teach you how to set up your own private cloud. Our class begins with our server and takes you through a variety of&#39;}]</pre>
+<pre>[{'generated_text': 'In this course, we will teach you how to integrate a Python function into your application and use a Python object. In addition, we will be teaching'},
+ {'generated_text': 'In this course, we will teach you how to set up your own private cloud. Our class begins with our server and takes you through a variety of'}]</pre>
 </div>
 
 </div>
@@ -1129,9 +1202,13 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Mask-Filling">Mask Filling<a class="anchor-link" href="#Mask-Filling"> </a></h3><p>Fill in the blanks of a given text</p>
+<h3 id="Mask-Filling">
+<a class="anchor" href="#Mask-Filling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mask Filling<a class="anchor-link" href="#Mask-Filling"> </a>
+</h3>
+<p>Fill in the blanks of a given text</p>
 
 </div>
 </div>
@@ -1178,7 +1255,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unmasker</span><span class="p">(</span><span class="s1">&#39;This course will teach you all about &lt;mask&gt; models.&#39;</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unmasker</span><span class="p">(</span><span class="s1">'This course will teach you all about &lt;mask&gt; models.'</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1193,14 +1270,14 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;score&#39;: 0.19619838893413544,
-  &#39;sequence&#39;: &#39;This course will teach you all about mathematical models.&#39;,
-  &#39;token&#39;: 30412,
-  &#39;token_str&#39;: &#39; mathematical&#39;},
- {&#39;score&#39;: 0.040527306497097015,
-  &#39;sequence&#39;: &#39;This course will teach you all about computational models.&#39;,
-  &#39;token&#39;: 38163,
-  &#39;token_str&#39;: &#39; computational&#39;}]</pre>
+<pre>[{'score': 0.19619838893413544,
+  'sequence': 'This course will teach you all about mathematical models.',
+  'token': 30412,
+  'token_str': ' mathematical'},
+ {'score': 0.040527306497097015,
+  'sequence': 'This course will teach you all about computational models.',
+  'token': 38163,
+  'token_str': ' computational'}]</pre>
 </div>
 
 </div>
@@ -1211,27 +1288,34 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So here it thought the best word to fill that with was mathematical, followed by computational (and showed the filled in sentence)</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>top_k</code> is how many possibilities are displayed
+</p>
 <div class="flash">
-    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
     <strong>Note: </strong>Model fills <code>&lt;mask&gt;</code>, and different models will have different things it will try and fill that with. One way to check this is by looking at the mask word used in the widget (on HF ModelHub)
-</div></p>
+</div>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Named-Entity-Recognition-(NER)">Named Entity Recognition (NER)<a class="anchor-link" href="#Named-Entity-Recognition-(NER)"> </a></h3><p>Find parts of an input text that correspond to entities such as persons, locations, or organizations.</p>
+<h3 id="Named-Entity-Recognition-(NER)">
+<a class="anchor" href="#Named-Entity-Recognition-(NER)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Named Entity Recognition (NER)<a class="anchor-link" href="#Named-Entity-Recognition-(NER)"> </a>
+</h3>
+<p>Find parts of an input text that correspond to entities such as persons, locations, or organizations.</p>
 
 </div>
 </div>
@@ -1260,7 +1344,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ner</span><span class="p">(</span><span class="s2">&quot;My name is Zach Mueller and I go to school in Pensacola&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ner</span><span class="p">(</span><span class="s2">"My name is Zach Mueller and I go to school in Pensacola"</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1275,16 +1359,16 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;end&#39;: 23,
-  &#39;entity_group&#39;: &#39;PER&#39;,
-  &#39;score&#39;: 0.9987525741259257,
-  &#39;start&#39;: 11,
-  &#39;word&#39;: &#39;Zach Mueller&#39;},
- {&#39;end&#39;: 55,
-  &#39;entity_group&#39;: &#39;LOC&#39;,
-  &#39;score&#39;: 0.9819004138310751,
-  &#39;start&#39;: 46,
-  &#39;word&#39;: &#39;Pensacola&#39;}]</pre>
+<pre>[{'end': 23,
+  'entity_group': 'PER',
+  'score': 0.9987525741259257,
+  'start': 11,
+  'word': 'Zach Mueller'},
+ {'end': 55,
+  'entity_group': 'LOC',
+  'score': 0.9819004138310751,
+  'start': 46,
+  'word': 'Pensacola'}]</pre>
 </div>
 
 </div>
@@ -1295,7 +1379,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>What does having it not grouped do?</p>
 
@@ -1310,7 +1395,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ner</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">NER</span><span class="p">,</span> <span class="n">grouped_entities</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ner</span><span class="p">(</span><span class="s2">&quot;My name is Zach Mueller and I go to school in Pensacola&quot;</span><span class="p">)</span>
+<span class="n">ner</span><span class="p">(</span><span class="s2">"My name is Zach Mueller and I go to school in Pensacola"</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1325,42 +1410,42 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;end&#39;: 15,
-  &#39;entity&#39;: &#39;I-PER&#39;,
-  &#39;index&#39;: 4,
-  &#39;score&#39;: 0.9993382692337036,
-  &#39;start&#39;: 11,
-  &#39;word&#39;: &#39;Zach&#39;},
- {&#39;end&#39;: 18,
-  &#39;entity&#39;: &#39;I-PER&#39;,
-  &#39;index&#39;: 5,
-  &#39;score&#39;: 0.999767005443573,
-  &#39;start&#39;: 16,
-  &#39;word&#39;: &#39;Mu&#39;},
- {&#39;end&#39;: 23,
-  &#39;entity&#39;: &#39;I-PER&#39;,
-  &#39;index&#39;: 6,
-  &#39;score&#39;: 0.9971524477005005,
-  &#39;start&#39;: 18,
-  &#39;word&#39;: &#39;##eller&#39;},
- {&#39;end&#39;: 49,
-  &#39;entity&#39;: &#39;I-LOC&#39;,
-  &#39;index&#39;: 13,
-  &#39;score&#39;: 0.9945659637451172,
-  &#39;start&#39;: 46,
-  &#39;word&#39;: &#39;Pen&#39;},
- {&#39;end&#39;: 51,
-  &#39;entity&#39;: &#39;I-LOC&#39;,
-  &#39;index&#39;: 14,
-  &#39;score&#39;: 0.956141471862793,
-  &#39;start&#39;: 49,
-  &#39;word&#39;: &#39;##sa&#39;},
- {&#39;end&#39;: 55,
-  &#39;entity&#39;: &#39;I-LOC&#39;,
-  &#39;index&#39;: 15,
-  &#39;score&#39;: 0.9949938058853149,
-  &#39;start&#39;: 51,
-  &#39;word&#39;: &#39;##cola&#39;}]</pre>
+<pre>[{'end': 15,
+  'entity': 'I-PER',
+  'index': 4,
+  'score': 0.9993382692337036,
+  'start': 11,
+  'word': 'Zach'},
+ {'end': 18,
+  'entity': 'I-PER',
+  'index': 5,
+  'score': 0.999767005443573,
+  'start': 16,
+  'word': 'Mu'},
+ {'end': 23,
+  'entity': 'I-PER',
+  'index': 6,
+  'score': 0.9971524477005005,
+  'start': 18,
+  'word': '##eller'},
+ {'end': 49,
+  'entity': 'I-LOC',
+  'index': 13,
+  'score': 0.9945659637451172,
+  'start': 46,
+  'word': 'Pen'},
+ {'end': 51,
+  'entity': 'I-LOC',
+  'index': 14,
+  'score': 0.956141471862793,
+  'start': 49,
+  'word': '##sa'},
+ {'end': 55,
+  'entity': 'I-LOC',
+  'index': 15,
+  'score': 0.9949938058853149,
+  'start': 51,
+  'word': '##cola'}]</pre>
 </div>
 
 </div>
@@ -1371,7 +1456,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So we can see that the first grouped "Zach" and "Mueller" together as a single item, and Pen, Sa, Cola together too (likely split with the subword tokenizer). Having <code>grouped=True</code> sounds like a good default in this case</p>
 <p>Most models that you want to have aligned with this task have some form of <code>POS</code> abbriviation in the name or tag</p>
@@ -1379,9 +1465,13 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Question-Answering-(QA)">Question Answering (QA)<a class="anchor-link" href="#Question-Answering-(QA)"> </a></h3><p>This is very straightforward, query a question and then receive an answer given some context.</p>
+<h3 id="Question-Answering-(QA)">
+<a class="anchor" href="#Question-Answering-(QA)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Question Answering (QA)<a class="anchor-link" href="#Question-Answering-(QA)"> </a>
+</h3>
+<p>This is very straightforward, query a question and then receive an answer given some context.</p>
 
 </div>
 </div>
@@ -1395,8 +1485,8 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">qa</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">QuestionAnswering</span><span class="p">)</span>
 <span class="n">qa</span><span class="p">(</span>
-    <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Where do I work?&quot;</span><span class="p">,</span>
-    <span class="n">context</span><span class="o">=</span><span class="s2">&quot;My name is Zach Mueller and I go to school in Pensacola&quot;</span>
+    <span class="n">question</span><span class="o">=</span><span class="s2">"Where do I work?"</span><span class="p">,</span>
+    <span class="n">context</span><span class="o">=</span><span class="s2">"My name is Zach Mueller and I go to school in Pensacola"</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -1412,7 +1502,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;answer&#39;: &#39;Pensacola&#39;, &#39;end&#39;: 55, &#39;score&#39;: 0.9609196186065674, &#39;start&#39;: 46}</pre>
+<pre>{'answer': 'Pensacola', 'end': 55, 'score': 0.9609196186065674, 'start': 46}</pre>
 </div>
 
 </div>
@@ -1423,23 +1513,29 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><div class="flash">
-    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
     <strong>Note: </strong>this is an <strong>extraction</strong> method, <em>not</em> text generation. So it just <em>extracted</em> Pensacola from the question.
-</div></p>
+</div>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Summarization">Summarization<a class="anchor-link" href="#Summarization"> </a></h3>
+<h3 id="Summarization">
+<a class="anchor" href="#Summarization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Summarization<a class="anchor-link" href="#Summarization"> </a>
+</h3>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Reduce a text to a shorter one, while keeping most of the important aspects referenced in the text</p>
 
@@ -1488,7 +1584,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">summarizer</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">summarizer</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">    America has changed dramatically during recent years. Not only has the number of </span>
 <span class="s2">    graduates in traditional engineering disciplines such as mechanical, civil, </span>
 <span class="s2">    electrical, chemical, and aeronautical engineering declined, but in most of </span>
@@ -1507,7 +1603,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 <span class="s2">    Other industrial countries at minimum maintain their output, while America </span>
 <span class="s2">    suffers an increasingly serious decline in the number of engineering graduates </span>
 <span class="s2">    and a lack of well-educated engineers.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s2">"""</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1522,7 +1618,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;summary_text&#39;: &#39; America has changed dramatically during recent years . The number of engineering graduates in the U.S. has declined in traditional engineering disciplines such as mechanical, civil,    electrical, chemical, and aeronautical engineering . Rapidly developing economies such as China and India continue to encourage and advance the teaching of engineering .&#39;}]</pre>
+<pre>[{'summary_text': ' America has changed dramatically during recent years . The number of engineering graduates in the U.S. has declined in traditional engineering disciplines such as mechanical, civil,    electrical, chemical, and aeronautical engineering . Rapidly developing economies such as China and India continue to encourage and advance the teaching of engineering .'}]</pre>
 </div>
 
 </div>
@@ -1533,9 +1629,13 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Translation">Translation<a class="anchor-link" href="#Translation"> </a></h3><p>The last task in the tutorial/lesson is machine translation. Usually the model name will have some <code>lang1_to_lang2</code> naming convention in the title. The easiest way to pick one is to search on the model hub. In this example we'll translate French to english (let's see how much I remember from my French classes in high school!)</p>
+<h3 id="Translation">
+<a class="anchor" href="#Translation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Translation<a class="anchor-link" href="#Translation"> </a>
+</h3>
+<p>The last task in the tutorial/lesson is machine translation. Usually the model name will have some <code>lang1_to_lang2</code> naming convention in the title. The easiest way to pick one is to search on the model hub. In this example we'll translate French to english (let's see how much I remember from my French classes in high school!)</p>
 
 </div>
 </div>
@@ -1547,7 +1647,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">translator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">Translation</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;Helsinki-NLP/opus-mt-fr-en&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">translator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">Translation</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">'Helsinki-NLP/opus-mt-fr-en'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1583,7 +1683,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">translator</span><span class="p">(</span><span class="s2">&quot;Je m&#39;apelle Zach, comment-vous est appelez-vous?&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">translator</span><span class="p">(</span><span class="s2">"Je m'apelle Zach, comment-vous est appelez-vous?"</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1598,7 +1698,7 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;translation_text&#39;: &#34;I&#39;m Zach, what&#39;s your name?&#34;}]</pre>
+<pre>[{'translation_text': "I'm Zach, what's your name?"}]</pre>
 </div>
 
 </div>
@@ -1609,14 +1709,16 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can also specify a <code>max_lenght</code> or <code>min_length</code> for the generated result</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the next chapter, we'll learn what is inside a pipeline and customizing its behavior</p>
 
@@ -1627,7 +1729,15 @@ It also mentions that they don't expect any prior PyTorch or Tensorflow knowledg
 
 
 
-  </div><a class="u-url" href="/fastblog/2021/06/14/HuggingFaceLesson1.html" hidden></a>
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="muellerzr/fastblog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/fastblog/huggingface/2021/06/14/HuggingFaceLesson1.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">

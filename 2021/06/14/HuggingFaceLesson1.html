@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>HuggingFace Course Notes, Chapter 1 (And Zero), Part 1 | fastblog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="HuggingFace Course Notes, Chapter 1 (And Zero), Part 1" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This notebook covers all of Chapter 0, and Chapter 1 up to “How do Transformers Work?”" />
+<meta property="og:description" content="This notebook covers all of Chapter 0, and Chapter 1 up to “How do Transformers Work?”" />
+<link rel="canonical" href="https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html" />
+<meta property="og:url" content="https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html" />
+<meta property="og:site_name" content="fastblog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-14T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-06-14T00:00:00-05:00","dateModified":"2021-06-14T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html"},"description":"This notebook covers all of Chapter 0, and Chapter 1 up to “How do Transformers Work?”","@type":"BlogPosting","url":"https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html","headline":"HuggingFace Course Notes, Chapter 1 (And Zero), Part 1","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/fastblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://muellerzr.github.io/fastblog/feed.xml" title="fastblog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-161578393-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<link rel="shortcut icon" type="image/x-icon" href="/fastblog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>HuggingFace Course Notes, Chapter 1 (And Zero), Part 1 | fastblog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="HuggingFace Course Notes, Chapter 1 (And Zero), Part 1" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This notebook covers all of Chapter 0, and Chapter 1 up to “How do Transformers Work?”" />
+<meta property="og:description" content="This notebook covers all of Chapter 0, and Chapter 1 up to “How do Transformers Work?”" />
+<link rel="canonical" href="https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html" />
+<meta property="og:url" content="https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html" />
+<meta property="og:site_name" content="fastblog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-14T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-06-14T00:00:00-05:00","dateModified":"2021-06-14T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html"},"description":"This notebook covers all of Chapter 0, and Chapter 1 up to “How do Transformers Work?”","@type":"BlogPosting","url":"https://muellerzr.github.io/fastblog/2021/06/14/HuggingFaceLesson1.html","headline":"HuggingFace Course Notes, Chapter 1 (And Zero), Part 1","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://muellerzr.github.io/fastblog/feed.xml" title="fastblog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-161578393-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/fastblog/">fastblog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/fastblog/about/">About Me</a><a class="page-link" href="/fastblog/search/">Search</a><a class="page-link" href="/fastblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">HuggingFace Course Notes, Chapter 1 (And Zero), Part 1</h1><p class="page-description">This notebook covers all of Chapter 0, and Chapter 1 up to &quot;How do Transformers Work?&quot;</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-06-14T00:00:00-05:00" itemprop="datePublished">
+        Jun 14, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      12 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/muellerzr/fastblog/tree/master/_notebooks/2021-06-14-HuggingFaceLesson1.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/fastblog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/muellerzr/fastblog/master?filepath=_notebooks%2F2021-06-14-HuggingFaceLesson1.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/fastblog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/muellerzr/fastblog/blob/master/_notebooks/2021-06-14-HuggingFaceLesson1.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/fastblog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-06-14-HuggingFaceLesson1.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>toc: true</li>
+<li>badges: true</li>
+<li>comments: true</li>
+<li>image: images/hugging-face.png</li>
+<li>category: HuggingFace</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Chapter-0-(Setup):">Chapter 0 (Setup):<a class="anchor-link" href="#Chapter-0-(Setup):"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since HF in of itself has no dependancy requirements, they recommend us installing <code>transformers[dev]</code> so it gets all the dev requirements for "any imaginable use case".</p>
+<p>A full list of what it installs is below:</p>
+
+<pre><code>deps = {
+    "Pillow": "Pillow",
+    "black": "black==21.4b0",
+    "cookiecutter": "cookiecutter==1.7.2",
+    "dataclasses": "dataclasses",
+    "datasets": "datasets",
+    "deepspeed": "deepspeed&gt;=0.4.0",
+    "docutils": "docutils==0.16.0",
+    "fairscale": "fairscale&gt;0.3",
+    "faiss-cpu": "faiss-cpu",
+    "fastapi": "fastapi",
+    "filelock": "filelock",
+    "flake8": "flake8&gt;=3.8.3",
+    "flax": "flax&gt;=0.3.4",
+    "fugashi": "fugashi&gt;=1.0",
+    "huggingface-hub": "huggingface-hub==0.0.8",
+    "importlib_metadata": "importlib_metadata",
+    "ipadic": "ipadic&gt;=1.0.0,&lt;2.0",
+    "isort": "isort&gt;=5.5.4",
+    "jax": "jax&gt;=0.2.8",
+    "jaxlib": "jaxlib&gt;=0.1.65",
+    "jieba": "jieba",
+    "keras2onnx": "keras2onnx",
+    "nltk": "nltk",
+    "numpy": "numpy&gt;=1.17",
+    "onnxconverter-common": "onnxconverter-common",
+    "onnxruntime-tools": "onnxruntime-tools&gt;=1.4.2",
+    "onnxruntime": "onnxruntime&gt;=1.4.0",
+    "optuna": "optuna",
+    "packaging": "packaging",
+    "parameterized": "parameterized",
+    "protobuf": "protobuf",
+    "psutil": "psutil",
+    "pydantic": "pydantic",
+    "pytest": "pytest",
+    "pytest-sugar": "pytest-sugar",
+    "pytest-xdist": "pytest-xdist",
+    "python": "python&gt;=3.6.0",
+    "ray": "ray",
+    "recommonmark": "recommonmark",
+    "regex": "regex!=2019.12.17",
+    "requests": "requests",
+    "rouge-score": "rouge-score",
+    "sacrebleu": "sacrebleu&gt;=1.4.12",
+    "sacremoses": "sacremoses",
+    "sagemaker": "sagemaker&gt;=2.31.0",
+    "scikit-learn": "scikit-learn",
+    "sentencepiece": "sentencepiece==0.1.91",
+    "soundfile": "soundfile",
+    "sphinx-copybutton": "sphinx-copybutton",
+    "sphinx-markdown-tables": "sphinx-markdown-tables",
+    "sphinx-rtd-theme": "sphinx-rtd-theme==0.4.3",
+    "sphinx": "sphinx==3.2.1",
+    "sphinxext-opengraph": "sphinxext-opengraph==0.4.1",
+    "starlette": "starlette",
+    "tensorflow-cpu": "tensorflow-cpu&gt;=2.3",
+    "tensorflow": "tensorflow&gt;=2.3",
+    "timeout-decorator": "timeout-decorator",
+    "timm": "timm",
+    "tokenizers": "tokenizers&gt;=0.10.1,&lt;0.11",
+    "torch": "torch&gt;=1.0",
+    "torchaudio": "torchaudio",
+    "tqdm": "tqdm&gt;=4.27",
+    "unidic": "unidic&gt;=1.0.2",
+    "unidic_lite": "unidic_lite&gt;=1.0.7",
+    "uvicorn": "uvicorn",
+}</code></pre>
+<p><div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <strong>Note: </strong>after exploring a bit I found their requirements are located <a href="https://github.com/huggingface/transformers/blob/master/src/transformers/dependency_versions_table.py">here</a>
+</div></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install transformers<span class="o">[</span>dev<span class="o">]</span> -U &gt;&gt; /dev/null # Ensure we upgrade and clean the output
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre><span class="ansi-red-fg">ERROR: datascience 0.10.6 has requirement folium==0.2.1, but you&#39;ll have folium 0.8.3 which is incompatible.</span>
+<span class="ansi-red-fg">ERROR: pytest-forked 1.3.0 has requirement pytest&gt;=3.10, but you&#39;ll have pytest 3.6.4 which is incompatible.</span>
+<span class="ansi-red-fg">ERROR: pytest-xdist 2.2.1 has requirement pytest&gt;=6.0.0, but you&#39;ll have pytest 3.6.4 which is incompatible.</span>
+<span class="ansi-red-fg">ERROR: black 21.4b0 has requirement regex&gt;=2020.1.8, but you&#39;ll have regex 2019.12.20 which is incompatible.</span>
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This should take a bit to run. I noticed four incompatibility errors in Colab, we'll see if it has any issues.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip show transformers
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Name: transformers
+Version: 4.6.1
+Summary: State-of-the-art Natural Language Processing for TensorFlow 2.0 and PyTorch
+Home-page: https://github.com/huggingface/transformers
+Author: Thomas Wolf, Lysandre Debut, Victor Sanh, Julien Chaumond, Sam Shleifer, Patrick von Platen, Sylvain Gugger, Suraj Patil, Stas Bekman, Google AI Language Team Authors, Open AI team Authors, Facebook AI Authors, Carnegie Mellon University Authors
+Author-email: thomas@huggingface.co
+License: Apache
+Location: /usr/local/lib/python3.7/dist-packages
+Requires: tokenizers, packaging, importlib-metadata, numpy, filelock, tqdm, requests, huggingface-hub, sacremoses, regex
+Required-by: 
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Alright! We can move onto Chapter 1! 🤗</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Chapter-1">Chapter 1<a class="anchor-link" href="#Chapter-1"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction"> </a></h3><p>Looks as though it's split into three main chunks:</p>
+<ul>
+<li>Introduction</li>
+<li>Diving in</li>
+<li>Advanced</li>
+</ul>
+<p>Introduction will show a very surface level with Transformers models and HF Transformers, fine-tuning a basic model, and sharing models and tokenizers.</p>
+<p>Diving in will go further into the HF datasets and tokenizers library, basic NLP tasks, and how to ask for help (presumably on the forums or on Twitter?)</p>
+<p>Advanced looks to be covering specialized architecture, speeding up training, custom training loops (yay!) and contributing to HF itself.
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <strong>Note: </strong>This is better taken after an intro course such as Practical Deep Learning for Coders or any course developed by deeplearning.ai.
+</div>
+It also mentions that they don't expect any prior PyTorch or Tensorflow knowledge, but some familiarity will help. (fastai likely helps here too some)</p>
+<p>The wonderful authors:</p>
+<ul>
+<li>Matthew Carrigan - MLE @ HF</li>
+<li>Lysandre Debut - MLE @ HF, worked with Transformers library from the very beginning</li>
+<li>Sylvain Gugger - Research Engineer @ HF, core maintainer of Transformers. And one of our favorite former fastai folk</li>
+</ul>
+<p><strong>What we will learn</strong>:</p>
+<ul>
+<li>The <code>pipeline</code> function</li>
+<li>The Transformer architecture</li>
+<li>Encoder, decoder, and encoder/decoder architectures and when to use each</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Natural-Language-Processing">Natural Language Processing<a class="anchor-link" href="#Natural-Language-Processing"> </a></h3><ul>
+<li>What is it?</li>
+</ul>
+<p>Classifying whole sentences or each word in a sentence, generating text content, question answering, and generating a new sentence from an input text</p>
+<ul>
+<li>Why is it challenging?</li>
+</ul>
+<p>For a human, given "I am hungry" and "I am sad" we can know how similar thye are. That's hard for ML models.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Transformers,-what-can-they-do?">Transformers, what can they do?<a class="anchor-link" href="#Transformers,-what-can-they-do?"> </a></h3><p>We get to look at <code>pipeline</code> now!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <a href="https://huggingface.co/models">Model Hub</a> is a super valuable resource because it contains thousands of pretrained models for you to use, and you can upload your own. <em>The</em> language model zoo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Working-with-Pipelines,-with-Sylvain"><a href="https://youtu.be/tiZFewofSLM">Working with Pipelines, with Sylvain</a><a class="anchor-link" href="#Working-with-Pipelines,-with-Sylvain"> </a></h3><blockquote><p>Offhand note, I like that the videos are broken up into ~4-5 minute chunks</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>General approach to how I will take these notes:</p>
+<ol>
+<li>Watch video without notes</li>
+<li>Read the website and take notes</li>
+<li>Go back to the video and catch anything I missed</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>pipeline</code> is a very quick and powerful way to grab inference with any HF model.</p>
+<p>Let's break down one example below they showed:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">)</span>
+<span class="n">classifier</span><span class="p">(</span><span class="s2">&quot;I&#39;ve been waiting for a HuggingFace course all my life!&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+
+
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;label&#39;: &#39;POSITIVE&#39;, &#39;score&#39;: 0.9943008422851562}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What did this do here?</p>
+<ol>
+<li>Downloaded a model (judging by the download bar). Don't know which model yet is the default</li>
+<li>I <em>think</em> we downloaded a pretrained tokenizer too?</li>
+<li>Said model was the default for a <code>sentiment-analysis</code> task</li>
+<li>We asked it to classify the sentiment in our sentence. Labels are positive and negative, and it gave us back an array of dictionaries with those values</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also pass in multiple inputs/texts:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">classifier</span><span class="p">([</span>
+    <span class="s2">&quot;I&#39;ve been waiting for a HuggingFace course my whole life.&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;I hate this so much!&quot;</span>
+<span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;label&#39;: &#39;POSITIVE&#39;, &#39;score&#39;: 0.9598048329353333},
+ {&#39;label&#39;: &#39;NEGATIVE&#39;, &#39;score&#39;: 0.9994558095932007}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The default model for this task is a pretrained model fine-uned for sentient analysis in english. Let's see if I can't find it</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="n">classifier</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;__abstractmethods__&#39;,
+ &#39;__call__&#39;,
+ &#39;__class__&#39;,
+ &#39;__delattr__&#39;,
+ &#39;__dict__&#39;,
+ &#39;__dir__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__eq__&#39;,
+ &#39;__format__&#39;,
+ &#39;__ge__&#39;,
+ &#39;__getattribute__&#39;,
+ &#39;__gt__&#39;,
+ &#39;__hash__&#39;,
+ &#39;__init__&#39;,
+ &#39;__init_subclass__&#39;,
+ &#39;__le__&#39;,
+ &#39;__lt__&#39;,
+ &#39;__module__&#39;,
+ &#39;__ne__&#39;,
+ &#39;__new__&#39;,
+ &#39;__reduce__&#39;,
+ &#39;__reduce_ex__&#39;,
+ &#39;__repr__&#39;,
+ &#39;__setattr__&#39;,
+ &#39;__sizeof__&#39;,
+ &#39;__slots__&#39;,
+ &#39;__str__&#39;,
+ &#39;__subclasshook__&#39;,
+ &#39;__weakref__&#39;,
+ &#39;_abc_impl&#39;,
+ &#39;_forward&#39;,
+ &#39;_parse_and_tokenize&#39;,
+ &#39;binary_output&#39;,
+ &#39;check_model_type&#39;,
+ &#39;default_input_names&#39;,
+ &#39;device&#39;,
+ &#39;device_placement&#39;,
+ &#39;ensure_tensor_on_device&#39;,
+ &#39;feature_extractor&#39;,
+ &#39;framework&#39;,
+ &#39;model&#39;,
+ &#39;modelcard&#39;,
+ &#39;predict&#39;,
+ &#39;return_all_scores&#39;,
+ &#39;save_pretrained&#39;,
+ &#39;task&#39;,
+ &#39;tokenizer&#39;,
+ &#39;transform&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">classifier</span><span class="o">.</span><span class="n">framework</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;pt&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">classifier</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>transformers.models.distilbert.modeling_distilbert.DistilBertForSequenceClassification</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So it's a <code>DistilBertForSequenceClassification</code>, likely using the default which would be <code>en-sentiment</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Current available pipeline classes:</p>
+<ul>
+<li><code>feature-extraction</code> (vector representation of a text)</li>
+<li><code>fill-mask</code></li>
+<li><code>ner</code> (Named-Entity-Recognition)</li>
+<li><code>question-answering</code></li>
+<li><code>sentiment-analysis</code></li>
+<li><code>text-generation</code></li>
+<li><code>translation</code></li>
+<li><code>zero-shot-classification</code></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Zero-Shot-Classification">Zero-Shot Classification<a class="anchor-link" href="#Zero-Shot-Classification"> </a></h3><ul>
+<li>Classifying unlabelled tasks. </li>
+</ul>
+<p><code>zero-shot-classification</code> pipeline let's us specify which labels to use for classification, even if they may differ from the pretrained models.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Side Note:I'm going to write a quick namespace class via <code>mk_class</code> in fastcore to hold all of these tasks, so I can get tab-completion</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">fastcore</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">fastcore.basics</span> <span class="kn">import</span> <span class="n">mk_class</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cls_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;FeatureExtraction&#39;</span><span class="p">:</span><span class="s1">&#39;feature-extraction&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;FillMask&#39;</span><span class="p">:</span><span class="s1">&#39;fill-mask&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;NER&#39;</span><span class="p">:</span><span class="s1">&#39;ner&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;QuestionAnswering&#39;</span><span class="p">:</span><span class="s1">&#39;question-answering&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;SentimentAnalysis&#39;</span><span class="p">:</span><span class="s1">&#39;sentiment-analysis&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Summarization&#39;</span><span class="p">:</span><span class="s1">&#39;summarization&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;TextGeneration&#39;</span><span class="p">:</span><span class="s1">&#39;text-generation&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Translation&#39;</span><span class="p">:</span><span class="s1">&#39;translation&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;ZeroShotClassification&#39;</span><span class="p">:</span><span class="s1">&#39;zero-shot-classification&#39;</span>
+ <span class="p">}</span>
+
+<span class="n">mk_class</span><span class="p">(</span><span class="s1">&#39;Task&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">cls_dict</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Task</span><span class="o">.</span><span class="n">FeatureExtraction</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;feature-extraction&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As you can see all I've done is load a fancy namespace-like object from <code>fastcore</code> that holds my dictionary values as attributes instead.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Back to the HF stuff. Let's load in a pipeline:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">ZeroShotClassification</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Seems this model took quite a bit longer to download, but our <code>Task</code> object is working great!</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">classifier</span><span class="p">(</span>
+    <span class="s2">&quot;This is a course about the Transformers library&quot;</span><span class="p">,</span>
+    <span class="n">candidate_labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;education&#39;</span><span class="p">,</span><span class="s1">&#39;politics&#39;</span><span class="p">,</span><span class="s1">&#39;business&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;labels&#39;: [&#39;education&#39;, &#39;business&#39;, &#39;politics&#39;],
+ &#39;scores&#39;: [0.844597339630127, 0.11197540909051895, 0.043427303433418274],
+ &#39;sequence&#39;: &#39;This is a course about the Transformers library&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Very interesting, so we can see right away it could tell this was educational! (Or fit the closest to that label.) I wonder how it works under the hood, something I may peruse later.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Text-Generation">Text Generation<a class="anchor-link" href="#Text-Generation"> </a></h3><p>Generate some fancy text given a prompt.</p>
+<p>Similar to predictive text feature on my iPhone.</p>
+<p>Has some randomness, so we won't 100% get the smae thing each time</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">TextGeneration</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+
+
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">generator</span><span class="p">(</span><span class="s2">&quot;In this course we will teach you how to&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;generated_text&#39;: &#39;In this course we will teach you how to create a custom project with custom options.\n\nBefore you begin, you will also want to check how to setup the build system. It is available in all versions, at all times we recommend using the&#39;}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Theres a few args we can control and pass to it, such as <code>num_return_sequences</code> and <code>max_length</code>.</p>
+<p>The homework is to try and generate two sentences of 15 words each. Let's try that:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">generator</span><span class="p">(</span>
+    <span class="s2">&quot;In Marine Biology,&quot;</span><span class="p">,</span>
+    <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">max_length</span><span class="o">=</span><span class="mi">15</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;generated_text&#39;: &#39;In Marine Biology, the study was published in Physical Review Letters.\n\n&#39;},
+ {&#39;generated_text&#39;: &#34;In Marine Biology, a graduate of California&#39;s Stanford University, said the discovery&#34;}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Cool! Easy to use</p>
+<p>A headache I ran into is it's <code>num_return_sequences</code>, <strong>not</strong> <code>num_returned_sequences</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Use-any-model-from-the-Hub-in-a-pipeline">Use any model from the Hub in a pipeline<a class="anchor-link" href="#Use-any-model-from-the-Hub-in-a-pipeline"> </a></h3><p>I <strong>love</strong> the HuggingFace hub, so very happy to see this in here</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Models can be found on the <a href="https://huggingface.co/models">ModelHub</a>. In this example we use distilgpt2</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">TextGeneration</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;distilgpt2&#39;</span><span class="p">)</span>
+
+<span class="n">generator</span><span class="p">(</span>
+    <span class="s2">&quot;In this course, we will teach you how to&quot;</span><span class="p">,</span>
+    <span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+
+
+
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;generated_text&#39;: &#39;In this course, we will teach you how to integrate a Python function into your application and use a Python object. In addition, we will be teaching&#39;},
+ {&#39;generated_text&#39;: &#39;In this course, we will teach you how to set up your own private cloud. Our class begins with our server and takes you through a variety of&#39;}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Mask-Filling">Mask Filling<a class="anchor-link" href="#Mask-Filling"> </a></h3><p>Fill in the blanks of a given text</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unmasker</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">FillMask</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+
+
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unmasker</span><span class="p">(</span><span class="s1">&#39;This course will teach you all about &lt;mask&gt; models.&#39;</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;score&#39;: 0.19619838893413544,
+  &#39;sequence&#39;: &#39;This course will teach you all about mathematical models.&#39;,
+  &#39;token&#39;: 30412,
+  &#39;token_str&#39;: &#39; mathematical&#39;},
+ {&#39;score&#39;: 0.040527306497097015,
+  &#39;sequence&#39;: &#39;This course will teach you all about computational models.&#39;,
+  &#39;token&#39;: 38163,
+  &#39;token_str&#39;: &#39; computational&#39;}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So here it thought the best word to fill that with was mathematical, followed by computational (and showed the filled in sentence)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>top_k</code> is how many possibilities are displayed
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <strong>Note: </strong>Model fills <code>&lt;mask&gt;</code>, and different models will have different things it will try and fill that with. One way to check this is by looking at the mask word used in the widget (on HF ModelHub)
+</div></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Named-Entity-Recognition-(NER)">Named Entity Recognition (NER)<a class="anchor-link" href="#Named-Entity-Recognition-(NER)"> </a></h3><p>Find parts of an input text that correspond to entities such as persons, locations, or organizations.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ner</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">NER</span><span class="p">,</span> <span class="n">grouped_entities</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ner</span><span class="p">(</span><span class="s2">&quot;My name is Zach Mueller and I go to school in Pensacola&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;end&#39;: 23,
+  &#39;entity_group&#39;: &#39;PER&#39;,
+  &#39;score&#39;: 0.9987525741259257,
+  &#39;start&#39;: 11,
+  &#39;word&#39;: &#39;Zach Mueller&#39;},
+ {&#39;end&#39;: 55,
+  &#39;entity_group&#39;: &#39;LOC&#39;,
+  &#39;score&#39;: 0.9819004138310751,
+  &#39;start&#39;: 46,
+  &#39;word&#39;: &#39;Pensacola&#39;}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What does having it not grouped do?</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ner</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">NER</span><span class="p">,</span> <span class="n">grouped_entities</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ner</span><span class="p">(</span><span class="s2">&quot;My name is Zach Mueller and I go to school in Pensacola&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;end&#39;: 15,
+  &#39;entity&#39;: &#39;I-PER&#39;,
+  &#39;index&#39;: 4,
+  &#39;score&#39;: 0.9993382692337036,
+  &#39;start&#39;: 11,
+  &#39;word&#39;: &#39;Zach&#39;},
+ {&#39;end&#39;: 18,
+  &#39;entity&#39;: &#39;I-PER&#39;,
+  &#39;index&#39;: 5,
+  &#39;score&#39;: 0.999767005443573,
+  &#39;start&#39;: 16,
+  &#39;word&#39;: &#39;Mu&#39;},
+ {&#39;end&#39;: 23,
+  &#39;entity&#39;: &#39;I-PER&#39;,
+  &#39;index&#39;: 6,
+  &#39;score&#39;: 0.9971524477005005,
+  &#39;start&#39;: 18,
+  &#39;word&#39;: &#39;##eller&#39;},
+ {&#39;end&#39;: 49,
+  &#39;entity&#39;: &#39;I-LOC&#39;,
+  &#39;index&#39;: 13,
+  &#39;score&#39;: 0.9945659637451172,
+  &#39;start&#39;: 46,
+  &#39;word&#39;: &#39;Pen&#39;},
+ {&#39;end&#39;: 51,
+  &#39;entity&#39;: &#39;I-LOC&#39;,
+  &#39;index&#39;: 14,
+  &#39;score&#39;: 0.956141471862793,
+  &#39;start&#39;: 49,
+  &#39;word&#39;: &#39;##sa&#39;},
+ {&#39;end&#39;: 55,
+  &#39;entity&#39;: &#39;I-LOC&#39;,
+  &#39;index&#39;: 15,
+  &#39;score&#39;: 0.9949938058853149,
+  &#39;start&#39;: 51,
+  &#39;word&#39;: &#39;##cola&#39;}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So we can see that the first grouped "Zach" and "Mueller" together as a single item, and Pen, Sa, Cola together too (likely split with the subword tokenizer). Having <code>grouped=True</code> sounds like a good default in this case</p>
+<p>Most models that you want to have aligned with this task have some form of <code>POS</code> abbriviation in the name or tag</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Question-Answering-(QA)">Question Answering (QA)<a class="anchor-link" href="#Question-Answering-(QA)"> </a></h3><p>This is very straightforward, query a question and then receive an answer given some context.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">qa</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">QuestionAnswering</span><span class="p">)</span>
+<span class="n">qa</span><span class="p">(</span>
+    <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Where do I work?&quot;</span><span class="p">,</span>
+    <span class="n">context</span><span class="o">=</span><span class="s2">&quot;My name is Zach Mueller and I go to school in Pensacola&quot;</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;answer&#39;: &#39;Pensacola&#39;, &#39;end&#39;: 55, &#39;score&#39;: 0.9609196186065674, &#39;start&#39;: 46}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <strong>Note: </strong>this is an <strong>extraction</strong> method, <em>not</em> text generation. So it just <em>extracted</em> Pensacola from the question.
+</div></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Summarization">Summarization<a class="anchor-link" href="#Summarization"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Reduce a text to a shorter one, while keeping most of the important aspects referenced in the text</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">summarizer</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">Summarization</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+
+
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">summarizer</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    America has changed dramatically during recent years. Not only has the number of </span>
+<span class="s2">    graduates in traditional engineering disciplines such as mechanical, civil, </span>
+<span class="s2">    electrical, chemical, and aeronautical engineering declined, but in most of </span>
+<span class="s2">    the premier American universities engineering curricula now concentrate on </span>
+<span class="s2">    and encourage largely the study of engineering science. As a result, there </span>
+<span class="s2">    are declining offerings in engineering subjects dealing with infrastructure, </span>
+<span class="s2">    the environment, and related issues, and greater concentration on high </span>
+<span class="s2">    technology subjects, largely supporting increasingly complex scientific </span>
+<span class="s2">    developments. While the latter is important, it should not be at the expense </span>
+<span class="s2">    of more traditional engineering.</span>
+
+<span class="s2">    Rapidly developing economies such as China and India, as well as other </span>
+<span class="s2">    industrial countries in Europe and Asia, continue to encourage and advance </span>
+<span class="s2">    the teaching of engineering. Both China and India, respectively, graduate </span>
+<span class="s2">    six and eight times as many traditional engineers as does the United States. </span>
+<span class="s2">    Other industrial countries at minimum maintain their output, while America </span>
+<span class="s2">    suffers an increasingly serious decline in the number of engineering graduates </span>
+<span class="s2">    and a lack of well-educated engineers.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;summary_text&#39;: &#39; America has changed dramatically during recent years . The number of engineering graduates in the U.S. has declined in traditional engineering disciplines such as mechanical, civil,    electrical, chemical, and aeronautical engineering . Rapidly developing economies such as China and India continue to encourage and advance the teaching of engineering .&#39;}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Translation">Translation<a class="anchor-link" href="#Translation"> </a></h3><p>The last task in the tutorial/lesson is machine translation. Usually the model name will have some <code>lang1_to_lang2</code> naming convention in the title. The easiest way to pick one is to search on the model hub. In this example we'll translate French to english (let's see how much I remember from my French classes in high school!)</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">translator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">Translation</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;Helsinki-NLP/opus-mt-fr-en&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+
+
+
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">translator</span><span class="p">(</span><span class="s2">&quot;Je m&#39;apelle Zach, comment-vous est appelez-vous?&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;translation_text&#39;: &#34;I&#39;m Zach, what&#39;s your name?&#34;}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also specify a <code>max_lenght</code> or <code>min_length</code> for the generated result</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the next chapter, we'll learn what is inside a pipeline and customizing its behavior</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><a class="u-url" href="/fastblog/2021/06/14/HuggingFaceLesson1.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/fastblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/fastblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/fastblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/muellerzr" title="muellerzr"><svg class="svg-icon grey"><use xlink:href="/fastblog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/TheZachMueller" title="TheZachMueller"><svg class="svg-icon grey"><use xlink:href="/fastblog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

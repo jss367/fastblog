@@ -46,7 +46,7 @@
 <p>Setting up a local environment (be it GPU enabled or not) is one of the most frustrating aspects of our field. You can follow a million tutorials and <em>still</em> not get it right. God forbid you mess up your conda environment too, and then you're really in a pickle.</p>
 <p>The nice thing about these Docker containers is so long as we supply it with the right underlying <strong>hardware</strong> to use (yes, that means we'll be covering installing CUDA and whatnot sadly), managing your environment is as simple as throwing up a new Docker image. But what if I break that environment? Rebuild it. I don't lose my data (if we configure it properly), and I can just say goodbye to that environment configuration and start anew.</p>
 <p>We get access to this capability through a shared resource called the <a href="https://hub.docker.com/">Docker Hub</a>. Through here, we can host our own pre-built Docker configurations and can run them on our local machines!</p>
-<blockquote><p><strong>Important Notice</strong>:We will <em>not</em> be talking about writing Dockerfile's here. We will be discussing utilizing them instead.</p>
+<blockquote><p><strong>Important Notice</strong>:We will <em>not</em> be talking about writing Dockerfile's here. We will be discussing utilizing them instead. For a good tutorial/curriculum, my course I took in school utilized <a href="https://www.docker.com/101-tutorial">Docker 101</a>, and here's a good <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">best practices</a> reference</p>
 </blockquote>
 
 </div>
@@ -79,7 +79,7 @@
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Installing-Ubuntu">Installing Ubuntu<a class="anchor-link" href="#Installing-Ubuntu"> </a></h2><p>Next, you'll want to install Ubuntu. Word of advice: <strong>bring this article up on your phone so you can keep reading</strong>. As during it, you won't have access to your computer.</p>
+<h2 id="Installing-Ubuntu">Installing Ubuntu<a class="anchor-link" href="#Installing-Ubuntu"> </a></h2><p>Next, you'll want to install Ubuntu. Word of advice: <strong>bring <a href="https://www.itzgeek.com/post/how-to-install-ubuntu-20-04-alongside-with-windows-10-in-dual-boot/">this article</a> up on your phone so you can keep reading</strong>. As during it, you won't have access to your computer.</p>
 <p>You will need:</p>
 <ul>
 <li>Your laptop, turned off</li>
@@ -98,8 +98,9 @@
     <strong>Note: </strong>I had some issues with Ubuntu being laggy, it was just due to this preview. It went away post installation
 </div>
 More or less just follow along the directions. <strong>HOWEVER</strong>: At one point it will prompt you with a radial button saying "Install just what I need", with another option saying install 3rd-party drivers.</p>
-<p><em>For the love of everything, hit that button</em></p>
-<p>You <strong>need</strong> to install 3rd-party drivers to have access to bluetooth, internet, and a slew of other things. So <em>do it</em>.</p>
+<p><em>For the love of everything, hit that button</em>
+(this is step 
+You <strong>need</strong> to install 3rd-party drivers to have access to bluetooth, internet, and a slew of other things. So <em>do it</em>.</p>
 <p>Wait about 10-15 minutes if that for it to install, and you should have a functioning Linux install!</p>
 <p>Now boot up your new Ubuntu OS, and we can begin the fun!</p>
 

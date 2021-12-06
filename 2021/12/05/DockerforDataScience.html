@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Docker for Data Science&amp;#58 Efficient Image Instancing without System Issues | fastblog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Docker for Data Science&amp;#58 Efficient Image Instancing without System Issues" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Covering how and why you should setup Docker for your local environment when developing Machine Learning models and products" />
+<meta property="og:description" content="Covering how and why you should setup Docker for your local environment when developing Machine Learning models and products" />
+<link rel="canonical" href="https://muellerzr.github.io/fastblog/2021/12/05/DockerforDataScience.html" />
+<meta property="og:url" content="https://muellerzr.github.io/fastblog/2021/12/05/DockerforDataScience.html" />
+<meta property="og:site_name" content="fastblog" />
+<meta property="og:image" content="https://muellerzr.github.io/fastblog/images/docker_love.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-05T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"Covering how and why you should setup Docker for your local environment when developing Machine Learning models and products","@type":"BlogPosting","headline":"Docker for Data Science&amp;#58 Efficient Image Instancing without System Issues","dateModified":"2021-12-05T00:00:00-06:00","datePublished":"2021-12-05T00:00:00-06:00","url":"https://muellerzr.github.io/fastblog/2021/12/05/DockerforDataScience.html","image":"https://muellerzr.github.io/fastblog/images/docker_love.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://muellerzr.github.io/fastblog/2021/12/05/DockerforDataScience.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/fastblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://muellerzr.github.io/fastblog/feed.xml" title="fastblog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-161578393-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<link rel="shortcut icon" type="image/x-icon" href="/fastblog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Docker for Data Science&amp;#58 Efficient Image Instancing without System Issues | fastblog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Docker for Data Science&amp;#58 Efficient Image Instancing without System Issues" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Covering how and why you should setup Docker for your local environment when developing Machine Learning models and products" />
+<meta property="og:description" content="Covering how and why you should setup Docker for your local environment when developing Machine Learning models and products" />
+<link rel="canonical" href="https://muellerzr.github.io/fastblog/2021/12/05/DockerforDataScience.html" />
+<meta property="og:url" content="https://muellerzr.github.io/fastblog/2021/12/05/DockerforDataScience.html" />
+<meta property="og:site_name" content="fastblog" />
+<meta property="og:image" content="https://muellerzr.github.io/fastblog/images/docker_love.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-05T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"Covering how and why you should setup Docker for your local environment when developing Machine Learning models and products","@type":"BlogPosting","headline":"Docker for Data Science&amp;#58 Efficient Image Instancing without System Issues","dateModified":"2021-12-05T00:00:00-06:00","datePublished":"2021-12-05T00:00:00-06:00","url":"https://muellerzr.github.io/fastblog/2021/12/05/DockerforDataScience.html","image":"https://muellerzr.github.io/fastblog/images/docker_love.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://muellerzr.github.io/fastblog/2021/12/05/DockerforDataScience.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://muellerzr.github.io/fastblog/feed.xml" title="fastblog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-161578393-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/fastblog/">fastblog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/fastblog/about/">About Me</a><a class="page-link" href="/fastblog/search/">Search</a><a class="page-link" href="/fastblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Docker for Data Science&amp;#58 Efficient Image Instancing without System Issues</h1><p class="page-description">Covering how and why you should setup Docker for your local environment when developing Machine Learning models and products</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-05T00:00:00-06:00" itemprop="datePublished">
+        Dec 5, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      16 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/muellerzr/fastblog/tree/master/_notebooks/2021-12-05-DockerforDataScience.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/fastblog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/muellerzr/fastblog/master?filepath=_notebooks%2F2021-12-05-DockerforDataScience.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/fastblog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/muellerzr/fastblog/blob/master/_notebooks/2021-12-05-DockerforDataScience.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/fastblog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#What-is-Docker?-Why-do-I-love-it?-And-why-should-you-suddenly-worship-the-Almighty-Whale?">What is Docker? Why do I love it? And why should you suddenly worship the Almighty Whale? </a></li>
+<li class="toc-entry toc-h2"><a href="#Moving-on,-what-does-this-have-to-do-with-Data-Science?">Moving on, what does this have to do with Data Science? </a></li>
+<li class="toc-entry toc-h2"><a href="#Awesome,-so-how-do-I-setup-my-environment?">Awesome, so how do I setup my environment? </a></li>
+<li class="toc-entry toc-h2"><a href="#Downloading-Ubuntu">Downloading Ubuntu </a></li>
+<li class="toc-entry toc-h2"><a href="#Installing-Ubuntu">Installing Ubuntu </a></li>
+<li class="toc-entry toc-h2"><a href="#Installing-NVIDIA-and-the-Drivers">Installing NVIDIA and the Drivers </a></li>
+<li class="toc-entry toc-h2"><a href="#Next-up:-Docker">Next up: Docker </a></li>
+<li class="toc-entry toc-h2"><a href="#Docker:-The-Basics">Docker: The Basics </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#docker-container-list">docker container list </a></li>
+<li class="toc-entry toc-h3"><a href="#docker-search">docker search </a></li>
+<li class="toc-entry toc-h3"><a href="#docker-pull">docker pull </a></li>
+<li class="toc-entry toc-h3"><a href="#docker-run">docker run </a></li>
+<li class="toc-entry toc-h3"><a href="#docker-kill">docker kill </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#My-Secret-Sauce">My Secret Sauce </a></li>
+<li class="toc-entry toc-h2"><a href="#Docker-Buddy">Docker Buddy </a></li>
+<li class="toc-entry toc-h2"><a href="#Conclusion">Conclusion </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-12-05-DockerforDataScience.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-is-Docker?-Why-do-I-love-it?-And-why-should-you-suddenly-worship-the-Almighty-Whale?">
+<a class="anchor" href="#What-is-Docker?-Why-do-I-love-it?-And-why-should-you-suddenly-worship-the-Almighty-Whale?" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is Docker? Why do I love it? And why should you suddenly worship the Almighty Whale?<a class="anchor-link" href="#What-is-Docker?-Why-do-I-love-it?-And-why-should-you-suddenly-worship-the-Almighty-Whale?"> </a>
+</h2>
+<p>Ishmael once set out to conquer the seas by taking down the leviathan: Moby Dick. The unkillable being that haunted the seas. However, in his endevour, he failed. The Whale completely destroying his ship and crew, leaving him as the sole survivor.</p>
+<p>But have we ever stopped and thought: should we instead be worshiping this Whale? Is it too strong for mortal man? And how can we do so, and what gifts will it bring forth?</p>
+<p>Too weird? Too weird. Anyways, back on topic to somewhat whale-related things.</p>
+<p><a href="https://docker.com">Docker</a> is a <em>containerization</em> platform.</p>
+<p>What does this mean? Let's do some quick introductions.</p>
+<p>Some of you may be familiar with the concept of a <strong>Virtual Machine</strong> (VM). These VM's are often ran to boot Linux onto your Windows machine and work in an environment that has mild access to your internal system. What can get annoying very quickly with VM's however is they require a <strong>hefty</strong> amount of system resources to be used, even if you might not get through all of it. Typically you have to direct the virtual machine to allocate X Gb of memory for you to use, X Gb of storage for it to utilize, and so forth. Limiting how much you can do.</p>
+<p>The result? Running over 3 virtual machines in a standard environment is near <em>impossible</em> to run efficiently.</p>
+<p>Alright, what about a "container"? Containers are a light-weight infrastructure that runs <em>atop</em> your current environment. It doesn't have it's own allocation in memory, and so it shares directly with what your system is doing.</p>
+<p>The result?</p>
+<p>You can quite easily spin up and run <em>hundreds</em> of low-resource intensive Docker images at once, have them do their jobs, and then shut down, without too much headache. (Think something along the lines of run a shell script that writes to a random txt document 1,000 times: low intensive).</p>
+<p>The image below is a good visualization of this, taken from the <a href="https://www.youtube.com/watch?v=TvnZTi_gaNc">Virtual machines vs Docker Containers</a> YouTube video:</p>
+<p><img src="/fastblog/images/copied_from_nb/../images/docker_image.jpg" alt="Docker vs VMs"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can see that while both the VM and the Docker containers require underlying infrastructure and a base host operating system (think what your every day environment is on your computer), VM's require their own explicit Guest OS's to be installed, while Docker containers are just a <em>thin</em> layer that lives within the Docker Daemon.</p>
+<p>As a result, the containers are extremely lightweight, typically don't step on each others toes, and are quite efficient.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Moving-on,-what-does-this-have-to-do-with-Data-Science?">
+<a class="anchor" href="#Moving-on,-what-does-this-have-to-do-with-Data-Science?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Moving on, what does this have to do with Data Science?<a class="anchor-link" href="#Moving-on,-what-does-this-have-to-do-with-Data-Science?"> </a>
+</h2>
+<p>This sounds like quite a bit of DevOps work, doesn't it? (That's because it is!) Let's try and tie this back into our world of Data Science and Machine Learning.</p>
+<p>Setting up a local environment (be it GPU enabled or not) is one of the most frustrating aspects of our field. You can follow a million tutorials and <em>still</em> not get it right. God forbid you mess up your conda environment too, and then you're really in a pickle.</p>
+<p>The nice thing about these Docker containers is so long as we supply it with the right underlying <strong>hardware</strong> to use (yes, that means we'll be covering installing CUDA and whatnot sadly), managing your environment is as simple as throwing up a new Docker image. But what if I break that environment? Rebuild it. I don't lose my data (if we configure it properly), and I can just say goodbye to that environment configuration and start anew.</p>
+<p>We get access to this capability through a shared resource called the <a href="https://hub.docker.com/">Docker Hub</a>. Through here, we can host our own pre-built Docker configurations and can run them on our local machines!</p>
+<blockquote>
+<p><strong>Important Notice</strong>:We will <em>not</em> be talking about writing Dockerfile's here. We will be discussing utilizing them instead. For a good tutorial/curriculum, my course I took in school utilized <a href="https://www.docker.com/101-tutorial">Docker 101</a>, and here's a good <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">best practices</a> reference</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Awesome,-so-how-do-I-setup-my-environment?">
+<a class="anchor" href="#Awesome,-so-how-do-I-setup-my-environment?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Awesome, so how do I setup my environment?<a class="anchor-link" href="#Awesome,-so-how-do-I-setup-my-environment?"> </a>
+</h2>
+<p>I'll be following you through the exact same steps it took me to setup my new MSI Laptop, which came with a NVIDIA GPU attached with it. It'll be a process, with many links, but it should <em>not</em> take you more than 30 minutes in total!</p>
+<p>This will be the shortest part of this article, due to quite ltierally how quick this was. So, ready? Let's get started!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Downloading-Ubuntu">
+<a class="anchor" href="#Downloading-Ubuntu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Downloading Ubuntu<a class="anchor-link" href="#Downloading-Ubuntu"> </a>
+</h2>
+<p>First step is (if you so choose) installing Ubuntu onto your machine. I did because I wanted the entire seperated operating system, but do note: <em>this is not required</em>. I didn't want to deal with any thoroughput issues with WSL2, and I like staying on Windows 10, so this was the other main reason why I just went ahead with rolling Ubuntu.</p>
+<p>You will need a thumb drive of some form for this, as we will be making a bootable image to install from.</p>
+<p>First: Download and install <a href="https://rufus.ie/en/">Rufus</a>.</p>
+<p>Afterwards, navigate to the <a href="https://ubuntu.com/download/desktop">Ubuntu Desktop</a> homepage. Download the ISO, open it in Rufus, and hit <code>START</code>.</p>
+<p>It should prompt you saying we'll completely wipe that thumb drive, that's expected, then wait for it to finish.</p>
+<p>Once that is done, I'd personally recommend allocating a chunk of your hard drive to be your Linux partition.</p>
+<p>Considering I do a solid 50/50 of my work between Windows and Ubuntu, I just left half of my hard drive partitioned. Read how to do so <a href="https://support.microsoft.com/en-us/windows/create-and-format-a-hard-disk-partition-bbb8e185-1bda-ecd1-3465-c9728f7d7d2e">here</a>
+</p>
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <strong>Note: </strong>Do not choose to allocate the storage as an NTFS drive, leave it directly unallocated. Ubuntu can’t utilize NTFS drives for booting
+</div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Installing-Ubuntu">
+<a class="anchor" href="#Installing-Ubuntu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing Ubuntu<a class="anchor-link" href="#Installing-Ubuntu"> </a>
+</h2>
+<p>Next, you'll want to install Ubuntu. Word of advice: <strong>bring <a href="https://www.itzgeek.com/post/how-to-install-ubuntu-20-04-alongside-with-windows-10-in-dual-boot/">this article</a> up on your phone so you can keep reading</strong>. As during it, you won't have access to your computer.</p>
+<p>You will need:</p>
+<ul>
+<li>Your laptop, turned off</li>
+<li>Our newly-made image installer on our thumb drive</li>
+<li>An Ethernet cable.</li>
+</ul>
+<p>Yes, you heard me: an Ethernet cable. Even if you're doing this through your laptop, you'll want one.</p>
+<p>Out-of-the-box, Linux will likely not support your wireless card, and we'll hit a switch during install to get that.</p>
+<p>Alright, are we all set? Great.</p>
+<p>Boot up your computer and open your BIOS (Google it for your laptop brand, for some it's F7, F9, or even Delete).</p>
+<p>Once there, you'll want to navigate to the <strong>Boot</strong> section, and find the <strong>Boot Order</strong>. If your BIOS supports you directly booting off of some hardware, navigate to your USB Bus (it should say Ubuntu on it), and hit "Boot". If not, adjust the boot order to <em>start</em> with our little thumb drive, and then hit the "Save and Exit" button.</p>
+<p>Upon restarting, you should be on a new prompt asking you what you want to start in. You will get <em>extremely</em> familiar with the GNOME prompt, as it is what will handle telling your computer to either boot in Windows or Ubuntu. Here you just want to press the "Try Ubuntu" option (the first).</p>
+<p>After it boots, you should see on your desktop a "Install Ubuntu XYZ" shortcut, go ahead and click that to start installing it.
+</p>
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <strong>Note: </strong>I had some issues with Ubuntu being laggy, it was just due to this preview. It went away post installation
+</div>
+More or less just follow along the directions. <strong>HOWEVER</strong>: At one point it will prompt you with a radial button saying "Install just what I need", with another option saying install 3rd-party drivers.
+<p><em>For the love of everything, hit that button</em>
+(this is step 
+You <strong>need</strong> to install 3rd-party drivers to have access to bluetooth, internet, and a slew of other things. So <em>do it</em>.</p>
+<p>Wait about 10-15 minutes if that for it to install, and you should have a functioning Linux install!</p>
+<p>Now boot up your new Ubuntu OS, and we can begin the fun!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Installing-NVIDIA-and-the-Drivers">
+<a class="anchor" href="#Installing-NVIDIA-and-the-Drivers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing NVIDIA and the Drivers<a class="anchor-link" href="#Installing-NVIDIA-and-the-Drivers"> </a>
+</h2>
+<p>We're at the scary part now, installing the drivers. <strong>Follow this tutorial exactly and you will be fine</strong>. Ensure you find the right driver for your GPU, by looking <a href="https://www.nvidia.com/Download/index.aspx?lang=en-us">here</a>.</p>
+<p>I had heard a rumour in a tweet that Ubuntu enjoyed eating up our GPU RAM for rendering our screen. That's not good! I want as much VRAM as I can for running ML!</p>
+<p>Is there a solution? <em>Of course</em>. And here it is on a silver platter:</p>
+<p>A wonderful little gist on <a href="https://gist.github.com/alexlee-gk/76a409f62a53883971a18a11af93241b">Setting up integrated graphics for display</a></p>
+<p>Pretty much follow that gist 1:1, and by the end you will have CUDA installed without hating yourself. Below are a few important notes I'll highlight:</p>
+<blockquote>
+<p>The path to the xorg.conf file should be /etc/X11/xorg.conf and not /etx/X11/xorg.conf</p>
+</blockquote>
+<p>And <strong>especially</strong> this post by @scaomath further in the comments:&gt;  Thanks for the post. I was able to get the iGPU in 10th gen Intel running using the xorg.conf given, as well as CUDA running VSCode. However, I got all pixelated and weird color strips across the screen. So I did some Google-fu and found that in order that X works on Intel UHD 630 (8th-10th gen desktop CPU). The iGPU part needs to be changed to:</p>
+
+<pre><code>Section "Device"
+    Identifier  "Intel Graphics"
+    Driver      "modesetting"
+    BusID       "PCI:0:2:0"
+EndSection</code></pre>
+<blockquote>
+<p>The driver has to be modesetting which is in xserver-xorg-core. Just to be safe, it is recommended to uninstall xserver-xorg-video-intel as well.</p>
+</blockquote>
+<p>I did both, and afterwards I got ~10mb of constant usage out of my monitor from the GPU. Not perfect, but 10mb won't kill me or my performance <em>too</em> much</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Next-up:-Docker">
+<a class="anchor" href="#Next-up:-Docker" aria-hidden="true"><span class="octicon octicon-link"></span></a>Next up: Docker<a class="anchor-link" href="#Next-up:-Docker"> </a>
+</h2>
+<p>Okay, that was the hardest part of this entire thing. Seriously.</p>
+<p>All that's left is for you to download Docker-GPU, and we're ready to rock and roll.</p>
+<p>First, follow the docker installation directions from this digital ocean article:</p>
+<ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04">Installation directions</a></li>
+</ul>
+<p>Once that's done, we'll follow the directions for installing the CUDA capability for Docker <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#setting-up-nvidia-container-toolkit">here</a></p>
+<blockquote>
+<p><strong>Important</strong>:Skip the "Setting up Docker" portion, you have already done so.
+And, I kid you not, you're done!</p>
+</blockquote>
+<p>You can quickly test if it's working by doing the following:</p>
+<p>Test: <code>nvidia-smi</code> and make sure your GPU comes up</p>
+<p>Run: <code>docker run --rm --gpus all nvidia/cuda:XX.X-base nvidia-smi</code></p>
+<p>(replace XX.X with the CUDA version that showed up in <code>nvidia-smi</code>). you should see the GPU show there as well.</p>
+<p>The rest of this article will be covering some basic docker know-how for you to help utilize this great process, as well as some bash shortcuts I've made to speed up my development.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Docker:-The-Basics">
+<a class="anchor" href="#Docker:-The-Basics" aria-hidden="true"><span class="octicon octicon-link"></span></a>Docker: The Basics<a class="anchor-link" href="#Docker:-The-Basics"> </a>
+</h2>
+<p>In all reality, you need to know about four commands:</p>
+<ul>
+<li><code>docker container list</code></li>
+<li><code>docker search</code></li>
+<li><code>docker pull</code></li>
+<li><code>docker run</code></li>
+<li><code>docker kill</code></li>
+</ul>
+<p>Let's go over each quickly:</p>
+<h3 id="docker-container-list">
+<a class="anchor" href="#docker-container-list" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>docker container list</code><a class="anchor-link" href="#docker-container-list"> </a>
+</h3>
+<p>This command will list all active docker containers and their current status. You can see an example output of mine below:</p>
+<p><img src="/fastblog/images/copied_from_nb/../images/docker_container_list.png" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <strong>Note: </strong>the terminal doesn’t look too pretty or readable here, for now that’s fine. I wrote something to deal with that later.
+</div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What's important to read here:</p>
+<ul>
+<li>
+<p>Names: A nickname for a particular container, when referencing them in docker commands you can either use this or the CONTAINER ID</p>
+</li>
+<li>
+<p>Image: What the base image of the container is using</p>
+</li>
+<li>
+<p>Ports: What exposed ports are running that you can connect to (more on this later).</p>
+</li>
+</ul>
+<p>The rest you can look at or see if you need, but these are the three I pay the most attention to (along with Status).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="docker-search">
+<a class="anchor" href="#docker-search" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>docker search</code><a class="anchor-link" href="#docker-search"> </a>
+</h3>
+<p>This is what you (should) be using to find any docker containers you're interested in running. this will search the Docker Hub and find what you need. Below is an example of me searching for <code>fastai</code> images:</p>
+<p><img src="/fastblog/images/copied_from_nb/../images/docker_search.png" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's keep a note of how the official fastai image is <code>fastdotai/fastai</code>. We'll need this for later.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="docker-pull">
+<a class="anchor" href="#docker-pull" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>docker pull</code><a class="anchor-link" href="#docker-pull"> </a>
+</h3>
+<p><code>docker pull</code> is what will actually take that docker image on the hub, and bring it to our local device. It's a fairly straightfoward command as well. To download that fastai image, we do:</p>
+<p><code>docker pull fastdotai/fastai</code>.</p>
+<p>That's about it!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="docker-run">
+<a class="anchor" href="#docker-run" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>docker run</code><a class="anchor-link" href="#docker-run"> </a>
+</h3>
+<p>Docker run is how you will start up most of your docker images. For a full list of parameters you can pass in, see the documentation <a href="https://docs.docker.com/engine/reference/commandline/run/">here</a>, but for our sake I'll TL;DR the most important ones for you:</p>
+<ul>
+<li>
+<code>-v</code> specifies a <em>volume</em> for you to mount. It follows the syntax of <code>path/on/mine/from/root:/mnt/docker_volume/name</code>, where the latter half of that path is where it appears locally on your docker image. This will directly link to your local system, allowing you to touch your local files directly. 
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <strong>Note: </strong>Docker containers mount different file storage systems. Ensure you figure out the direct path it boots up in and then setup your volume there. This will alleviate quite a number of headaches
+</div>
+</li>
+<li>
+<code>-p</code> specifies exposed <em>ports</em> on your system. This is <strong>extremely</strong> important for say running Jupyter servers inside the image, and wanting to talk with them. Typically they follow a format of <code>-p 8888:8888</code>. The 8888 is the port on <em>your</em> system, and the second 8888 is the port <em>inside the docker image</em>. So, for example if inside the docker image is a server spin-up script, that exposes a jupyter port on <code>localhost:8888</code>, we <em>could</em> just leave it be and connect to port 8888. But we run into issues if I try and run two of this image, as the servers would mess with each other. By changing that first port number, we can perform <em>port forwarding</em>, and we will tell the docker container to send all data coming from port 8888 to 8887, something not in use. 
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <strong>Note: </strong>Depending on the setup, it may still say "connect to 127.x.x.x:8888". Remember that this is <em>not</em> the port we exposed, so trust your port changing and go to the right web address
+</div>
+</li>
+<li>
+<code>--gpus</code> specifies the number of GPUs to use. You can specify 1, 2, or <code>all</code>. I typically just use all. This is specific from us installing the CUDA version of docker earlier, so do take note to run your images with <code>--gpus</code> if you're hoping to make use of your GPU in your system.</li>
+</ul>
+<p>If we wanted to run that downloaded image of fastai we grabbed earlier and spin it up in our current working directory, here's how that would look: (I'll explain the fancy bash)</p>
+<p><code>docker run $(pwd):/home/runner/$(basename $(pwd)) -p 8888:8888 --gpus all fastdotai/fastai ./run_jupyter.sh</code></p>
+<p>Now, let's quickly talk about what this does.</p>
+<ul>
+<li>
+<code>pwd</code> grabs your current working directory, and its <em>full</em> path</li>
+<li>
+<code>basename</code> takes the last path in a long path (such as one returned by pwd)</li>
+</ul>
+<p>Doing this should now expose a jupyter server running on <code>localhost:8888</code> (that requires a token), and is utilizing your GPU!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="docker-kill">
+<a class="anchor" href="#docker-kill" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>docker kill</code><a class="anchor-link" href="#docker-kill"> </a>
+</h3>
+<p>Finally, we have the death command: <code>docker kill</code>. With this, you simply specify either the <code>container id</code> from earlier, or the nickname it gave you, and it will immediatly shut it down. An example of shutting down our container from earlier (the nbdev one running in the script) would look like the following:</p>
+<p><code>docker kill happy_poincare</code>
+</p>
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <strong>Note: </strong>Since we can run multiple containers of the same image, this is the importance of us specifying the nickname affiliated with it
+</div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="My-Secret-Sauce">
+<a class="anchor" href="#My-Secret-Sauce" aria-hidden="true"><span class="octicon octicon-link"></span></a>My Secret Sauce<a class="anchor-link" href="#My-Secret-Sauce"> </a>
+</h2>
+<p>What follows now will be my own secret commands I've written up, along with a library, to make my own life easier.</p>
+<p>I threw all of these into <code>./bash_aliases</code>.</p>
+<p>When it comes to docker commands, I'm lazy and don't want to write <code>docker container</code>, so we have the following:</p>
+<ul>
+<li>
+<code>alias dkill="docker kill</code> (kill a container)</li>
+<li>
+<code>alias dp="docker pull</code> (pull a container)</li>
+<li>
+<code>alias dr="docker run</code> (run a container)</li>
+</ul>
+<p>They still maintain their arguments (and respective helps), while also keeping my own sanity.</p>
+<p>I also have a few of the following for Python:</p>
+<ul>
+<li><code>alias python=python3</code></li>
+<li><code>alias py=python3</code></li>
+</ul>
+<p>Finally, we have some that handle running <code>docker run</code>, but before we get too deep into it, just set the following:</p>
+<ul>
+<li><code>alias start="dr "</code></li>
+</ul>
+<blockquote>
+<p>By setting a space at the end, we can have it trail off into commands directly below it, which we will utilize. You'll understand why for semantics I have "start" instead of dr in a moment</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Docker-Buddy">
+<a class="anchor" href="#Docker-Buddy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Docker Buddy<a class="anchor-link" href="#Docker-Buddy"> </a>
+</h2>
+<p>As I was working my way through this, I didn't like how some of the outputs looked (very bland, unreadbale). So as a result, I wrote <a href="https://github.com/muellerzr/docker_buddy">docker_buddy</a>, which utilizes Rich to introduce <em>clean</em> and concise versions of the same commands I just ran earlier.</p>
+<p>There are three alternatives in it:</p>
+<ul>
+<li>
+<code>ds</code> for <code>docker search</code>
+</li>
+<li>
+<code>dls</code> for <code>docker container list</code>
+</li>
+<li>
+<code>di</code> for inspecting docker containers, I nickname it as <code>docker investigate</code> in my head (though is not directly docker)</li>
+</ul>
+<p>To install:</p>
+<p><code>pip install docker_buddy</code></p>
+<p>And also do:</p>
+<div class="highlight"><pre><span></span>sudo apt install npm
+npm i -g rekcod
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For an example of how those help us out, take a quick peek at the images I provided for <code>docker search</code> and <code>docker container list</code>. Here's our new ones:</p>
+<p><strong>Docker Search (ds)</strong>:
+<img src="/fastblog/images/copied_from_nb/../images/docker_search_rich.png" alt=""></p>
+<p><strong>Docker Container List (dls)</strong>:
+<img src="/fastblog/images/copied_from_nb/../images/dls.png" alt=""></p>
+<p>Thanks entirely to <a href="https://rich.readthedocs.io/en/latest/introduction.html">Rich</a>, we're able to pull off this beautiful looking UI.</p>
+<p>I also wrote <code>di</code> as a way for us to see what inherit arguments are available for the <em>docker image specifically</em>, i.e. their configurations. An example output is below:</p>
+<p><img src="/fastblog/images/copied_from_nb/../images/di.png" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we have <code>docker_buddy</code> on our system, here's those last two cheats I have in my alias:</p>
+<ul>
+<li><code>alias nbdev="-v $(pwd):/home/runner/$(basename $(pwd)) -p 8888:8888 fastdotai/nbdev</code></li>
+<li><code>alias jupyt="-v $(pwd):/home/jovyan/$(basename $(pwd)) -p 8886:8888 jupyter/minimal-notebook</code></li>
+</ul>
+<p>Combined, these all now allow me to quickly do:</p>
+<div class="highlight"><pre><span></span>start fastai
+</pre></div>
+<p>or</p>
+<div class="highlight"><pre><span></span>start jupyt
+</pre></div>
+<p>To skip <em>all</em> of the long configuration setups to start my server. If needed we can of course go through and run them manually, but these are quick shortcuts I wrote for myself.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Conclusion">
+<a class="anchor" href="#Conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion<a class="anchor-link" href="#Conclusion"> </a>
+</h2>
+<p>I truly hope this has helped many of you setup some brand new environemnts, and use CUDA with as minimal headache as possible. The moment I got this working my mind got racing with all the possibilities this could bring, which is what drove me to write this article.</p>
+<p>If you've enjoyed this, please do let me know!</p>
+<p>You can find me on my socials at:</p>
+<ul>
+<li>Twitter: <a href="https://twitter.com/thezachmueller">@TheZachMueller</a>
+</li>
+<li>LinkedIn: <a href="https://www.linkedin.com/in/zachary-mueller-135257118">Zach Mueller</a>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="muellerzr/fastblog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/fastblog/2021/12/05/DockerforDataScience.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/fastblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/fastblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/fastblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/muellerzr" title="muellerzr"><svg class="svg-icon grey"><use xlink:href="/fastblog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/TheZachMueller" title="TheZachMueller"><svg class="svg-icon grey"><use xlink:href="/fastblog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
